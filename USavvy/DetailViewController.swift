@@ -12,6 +12,11 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
+    @IBAction func logOutUser(sender: AnyObject) {
+        PFUser.logOut()
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        delegate.setUpRootViewController(false, animated: false)
+    }
 
     var detailItem: AnyObject? {
         didSet {

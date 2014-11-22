@@ -13,16 +13,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("ULjqQwhr3m7aVEqDgZ8VQMlrbTGaaWujloMFjkJJ", clientKey: "Qy24JHY8a8t0DnYwvj9uaj56JK3Lgcp0RJzFjsZ9")
-        
-        // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
-        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-        splitViewController.delegate = self
+        var loggedIn = (PFUser.currentUser() != nil)
+        setUpRootViewController(loggedIn, animated: loggedIn)
         return true
+    }
+    
+    func setUpRootViewController(loggedIn: Bool, animated: Bool) {
+        if let window = self.window {
+            var newRootViewController: UIViewController? = nil
+            var transition: UIViewAnimationOptions
+            
+            if !loggedIn {
+                let loginVC = window.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("login") as LoginViewController
+                newRootViewController = loginVC
+                transition = UIViewAnimationOptions.TransitionFlipFromLeft
+            } else {
+                let splitViewController = window.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("SplitVC") as SplitViewController
+                let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
+                navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+                splitViewController.delegate = self
+                
+                let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
+                let controller = masterNavigationController.topViewController as MasterViewController
+                
+                newRootViewController = splitViewController
+                transition = UIViewAnimationOptions.TransitionFlipFromLeft
+             }
+
+            
+            if let rootVC = newRootViewController {
+                if animated {
+                    UIView.transitionWithView(window, duration: 0.5, options: transition, animations: { () -> Void in
+                        window.rootViewController = rootVC
+                    }, completion: nil)
+                } else {
+                    window.rootViewController = rootVC
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

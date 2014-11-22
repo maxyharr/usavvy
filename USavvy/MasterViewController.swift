@@ -23,12 +23,12 @@ class MasterViewController: UITableViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (PFUser.currentUser() == nil) {
-            let storyboard = self.storyboard!
-            let LoginVC = storyboard.instantiateViewControllerWithIdentifier("login") as? LoginViewController
-            LoginVC?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(LoginVC!, animated: true, completion: nil)
-        }
+//        if (PFUser.currentUser() == nil) {
+//            let storyboard = self.storyboard!
+//            let LoginVC = storyboard.instantiateViewControllerWithIdentifier("login") as? LoginViewController
+//            LoginVC?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+//            self.presentViewController(LoginVC!, animated: true, completion: nil)
+//        }
     }
 
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ class MasterViewController: UITableViewController {
         }
         
         // ONLY HERE TO TEST THE LOG IN PAGE - Remove on actual implementation
-        PFUser.logOut()
+        //PFUser.logOut()
     }
 
     override func didReceiveMemoryWarning() {

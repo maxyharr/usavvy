@@ -24,7 +24,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if user != nil {
                         println("Signing in \(PFUser.currentUser().email) succeeded")
                         // Do stuff after successful login.
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        //self.dismissViewControllerAnimated(true, completion: nil)
+                        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+                        delegate.setUpRootViewController(true, animated: true)
                     } else {
                         println(error.localizedFailureReason)
                         // The login failed. Check error to see why.
@@ -52,7 +54,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         if error == nil {
                             // Hooray! Let them use the app now.
                             println("Signing up succeeded")
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            //self.dismissViewControllerAnimated(true, completion: nil)
+                            let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+                            delegate.setUpRootViewController(true, animated: true)
                         } else {
                             println("Signing up failed")
                             //let errorString = error.userInfo["error"] as NSString

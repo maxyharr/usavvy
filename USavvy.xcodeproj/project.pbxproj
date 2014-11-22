@@ -27,6 +27,7 @@
 		E183DE951A1FF51800CB0455 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE941A1FF51800CB0455 /* StoreKit.framework */; };
 		E183DE971A1FF52100CB0455 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE961A1FF52100CB0455 /* SystemConfiguration.framework */; };
 		E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */; };
+		E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA01A20FD2500CB0455 /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		E183DE961A1FF52100CB0455 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E183DE991A1FF55000CB0455 /* USavvy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "USavvy-Bridging-Header.h"; sourceTree = "<group>"; };
 		E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		E183DEA01A20FD2500CB0455 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				E183DE601A1FF2E400CB0455 /* MasterViewController.swift */,
 				E183DE621A1FF2E400CB0455 /* DetailViewController.swift */,
 				E183DE641A1FF2E400CB0455 /* Main.storyboard */,
+				E183DEA01A20FD2500CB0455 /* SplitViewController.swift */,
 				E183DE671A1FF2E400CB0455 /* Images.xcassets */,
 				E183DE691A1FF2E400CB0455 /* LaunchScreen.xib */,
 				E183DE5C1A1FF2E400CB0455 /* Supporting Files */,
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */,
 				E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */,
 				E183DE631A1FF2E400CB0455 /* DetailViewController.swift in Sources */,
 				E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */,
