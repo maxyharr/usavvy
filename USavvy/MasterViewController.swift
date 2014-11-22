@@ -21,6 +21,15 @@ class MasterViewController: UITableViewController {
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        if (PFUser.currentUser() == nil) {
+            let storyboard = self.storyboard!
+            let LoginVC = storyboard.instantiateViewControllerWithIdentifier("login") as? LoginViewController
+            LoginVC?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            self.presentViewController(LoginVC!, animated: true, completion: nil)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +42,9 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
+        
+        // ONLY HERE TO TEST THE LOG IN PAGE - Remove on actual implementation
+        PFUser.logOut()
     }
 
     override func didReceiveMemoryWarning() {

@@ -14,6 +14,19 @@
 		E183DE681A1FF2E400CB0455 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E183DE671A1FF2E400CB0455 /* Images.xcassets */; };
 		E183DE6B1A1FF2E400CB0455 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E183DE691A1FF2E400CB0455 /* LaunchScreen.xib */; };
 		E183DE771A1FF2E400CB0455 /* USavvyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE761A1FF2E400CB0455 /* USavvyTests.swift */; };
+		E183DE821A1FF4B500CB0455 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE801A1FF4B500CB0455 /* Bolts.framework */; };
+		E183DE831A1FF4B500CB0455 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE811A1FF4B500CB0455 /* Parse.framework */; };
+		E183DE851A1FF4DC00CB0455 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE841A1FF4DC00CB0455 /* AudioToolbox.framework */; };
+		E183DE871A1FF4E500CB0455 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE861A1FF4E500CB0455 /* CFNetwork.framework */; };
+		E183DE891A1FF4EB00CB0455 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE881A1FF4EB00CB0455 /* CoreGraphics.framework */; };
+		E183DE8B1A1FF4F200CB0455 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE8A1A1FF4F200CB0455 /* CoreLocation.framework */; };
+		E183DE8D1A1FF4FC00CB0455 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE8C1A1FF4FC00CB0455 /* libz.dylib */; };
+		E183DE8F1A1FF50400CB0455 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE8E1A1FF50400CB0455 /* MobileCoreServices.framework */; };
+		E183DE911A1FF50A00CB0455 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE901A1FF50A00CB0455 /* QuartzCore.framework */; };
+		E183DE931A1FF51100CB0455 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE921A1FF51100CB0455 /* Security.framework */; };
+		E183DE951A1FF51800CB0455 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE941A1FF51800CB0455 /* StoreKit.framework */; };
+		E183DE971A1FF52100CB0455 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E183DE961A1FF52100CB0455 /* SystemConfiguration.framework */; };
+		E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +51,20 @@
 		E183DE701A1FF2E400CB0455 /* USavvyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USavvyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E183DE751A1FF2E400CB0455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E183DE761A1FF2E400CB0455 /* USavvyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USavvyTests.swift; sourceTree = "<group>"; };
+		E183DE801A1FF4B500CB0455 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		E183DE811A1FF4B500CB0455 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		E183DE841A1FF4DC00CB0455 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E183DE861A1FF4E500CB0455 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E183DE881A1FF4EB00CB0455 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E183DE8A1A1FF4F200CB0455 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E183DE8C1A1FF4FC00CB0455 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E183DE8E1A1FF50400CB0455 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E183DE901A1FF50A00CB0455 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E183DE921A1FF51100CB0455 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E183DE941A1FF51800CB0455 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E183DE961A1FF52100CB0455 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E183DE991A1FF55000CB0455 /* USavvy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "USavvy-Bridging-Header.h"; sourceTree = "<group>"; };
+		E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +72,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E183DE971A1FF52100CB0455 /* SystemConfiguration.framework in Frameworks */,
+				E183DE951A1FF51800CB0455 /* StoreKit.framework in Frameworks */,
+				E183DE931A1FF51100CB0455 /* Security.framework in Frameworks */,
+				E183DE911A1FF50A00CB0455 /* QuartzCore.framework in Frameworks */,
+				E183DE8F1A1FF50400CB0455 /* MobileCoreServices.framework in Frameworks */,
+				E183DE8D1A1FF4FC00CB0455 /* libz.dylib in Frameworks */,
+				E183DE8B1A1FF4F200CB0455 /* CoreLocation.framework in Frameworks */,
+				E183DE891A1FF4EB00CB0455 /* CoreGraphics.framework in Frameworks */,
+				E183DE871A1FF4E500CB0455 /* CFNetwork.framework in Frameworks */,
+				E183DE851A1FF4DC00CB0455 /* AudioToolbox.framework in Frameworks */,
+				E183DE831A1FF4B500CB0455 /* Parse.framework in Frameworks */,
+				E183DE821A1FF4B500CB0455 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +100,8 @@
 		E183DE501A1FF2E400CB0455 = {
 			isa = PBXGroup;
 			children = (
+				E183DE991A1FF55000CB0455 /* USavvy-Bridging-Header.h */,
+				E183DE981A1FF52700CB0455 /* Frameworks */,
 				E183DE5B1A1FF2E400CB0455 /* USavvy */,
 				E183DE731A1FF2E400CB0455 /* USavvyTests */,
 				E183DE5A1A1FF2E400CB0455 /* Products */,
@@ -79,6 +120,7 @@
 		E183DE5B1A1FF2E400CB0455 /* USavvy */ = {
 			isa = PBXGroup;
 			children = (
+				E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */,
 				E183DE5E1A1FF2E400CB0455 /* AppDelegate.swift */,
 				E183DE601A1FF2E400CB0455 /* MasterViewController.swift */,
 				E183DE621A1FF2E400CB0455 /* DetailViewController.swift */,
@@ -113,6 +155,25 @@
 				E183DE751A1FF2E400CB0455 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E183DE981A1FF52700CB0455 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E183DE961A1FF52100CB0455 /* SystemConfiguration.framework */,
+				E183DE941A1FF51800CB0455 /* StoreKit.framework */,
+				E183DE921A1FF51100CB0455 /* Security.framework */,
+				E183DE901A1FF50A00CB0455 /* QuartzCore.framework */,
+				E183DE8E1A1FF50400CB0455 /* MobileCoreServices.framework */,
+				E183DE8C1A1FF4FC00CB0455 /* libz.dylib */,
+				E183DE8A1A1FF4F200CB0455 /* CoreLocation.framework */,
+				E183DE881A1FF4EB00CB0455 /* CoreGraphics.framework */,
+				E183DE861A1FF4E500CB0455 /* CFNetwork.framework */,
+				E183DE841A1FF4DC00CB0455 /* AudioToolbox.framework */,
+				E183DE801A1FF4B500CB0455 /* Bolts.framework */,
+				E183DE811A1FF4B500CB0455 /* Parse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */,
 				E183DE631A1FF2E400CB0455 /* DetailViewController.swift in Sources */,
 				E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */,
 				E183DE5F1A1FF2E400CB0455 /* AppDelegate.swift in Sources */,
@@ -342,9 +404,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = USavvy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "USavvy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -352,9 +421,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = USavvy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "USavvy-Bridging-Header.h";
 			};
 			name = Release;
 		};
