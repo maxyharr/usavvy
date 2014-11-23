@@ -13,7 +13,6 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = NSMutableArray()
 
-
     override func awakeFromNib() {
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -83,16 +82,23 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-
-        let object = objects[indexPath.row] as NSDate
-        cell.textLabel.text = object.description
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PostingTableViewCell
+        
+        // learn how to set profile image programmatically
+//        cell.profileImageView.image = UIImage(contentsOfFile: "./USavvy/Images.xcassets/steve-profile")
+        cell.profileImageView.layer.cornerRadius = 38
+        cell.profileImageView.clipsToBounds = true
+        cell.profileImageView.layer.borderWidth = 3
+        cell.profileImageView.layer.borderColor = UIColor.orangeColor().CGColor
+        
+//        let object = objects[indexPath.row] as NSDate
+//        cell.textLabel.text = object.description
         return cell
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
