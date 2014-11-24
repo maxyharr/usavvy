@@ -29,6 +29,7 @@
 		E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */; };
 		E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA01A20FD2500CB0455 /* SplitViewController.swift */; };
 		E183DEA31A225F5C00CB0455 /* PostingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */; };
+		E183DEA51A2270AC00CB0455 /* HostFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA41A2270AC00CB0455 /* HostFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		E183DEA01A20FD2500CB0455 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingTableViewCell.swift; sourceTree = "<group>"; };
+		E183DEA41A2270AC00CB0455 /* HostFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostFormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				E183DE601A1FF2E400CB0455 /* MasterViewController.swift */,
 				E183DE621A1FF2E400CB0455 /* DetailViewController.swift */,
 				E183DE641A1FF2E400CB0455 /* Main.storyboard */,
+				E183DEA41A2270AC00CB0455 /* HostFormViewController.swift */,
 				E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */,
 				E183DEA01A20FD2500CB0455 /* SplitViewController.swift */,
 				E183DE671A1FF2E400CB0455 /* Images.xcassets */,
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E183DEA51A2270AC00CB0455 /* HostFormViewController.swift in Sources */,
 				E183DEA31A225F5C00CB0455 /* PostingTableViewCell.swift in Sources */,
 				E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */,
 				E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */,
@@ -494,6 +498,7 @@
 				E183DE7C1A1FF2E400CB0455 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E183DE7D1A1FF2E400CB0455 /* Build configuration list for PBXNativeTarget "USavvyTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +507,7 @@
 				E183DE7F1A1FF2E400CB0455 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

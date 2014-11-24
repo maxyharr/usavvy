@@ -20,8 +20,13 @@ class MasterViewController: UITableViewController {
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
     }
+//    @IBAction func addExperience(sender: AnyObject) {
+//        insertNewObject(sender)
+//    }
     
     override func viewDidAppear(animated: Bool) {
+        // Commented code below is now taken care of in the AppDelagate in order to work with iPad MasterDetailView constraints
+        
 //        if (PFUser.currentUser() == nil) {
 //            let storyboard = self.storyboard!
 //            let LoginVC = storyboard.instantiateViewControllerWithIdentifier("login") as? LoginViewController
@@ -35,8 +40,8 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+//        self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
@@ -45,16 +50,16 @@ class MasterViewController: UITableViewController {
         // ONLY HERE TO TEST THE LOG IN PAGE - Remove on actual implementation
         //PFUser.logOut()
     }
+    
+        func insertNewObject(sender: AnyObject) {
+            objects.insertObject(NSDate(), atIndex: 0)
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func insertNewObject(sender: AnyObject) {
-        objects.insertObject(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
 
     // MARK: - Segues
@@ -68,6 +73,10 @@ class MasterViewController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }
+        
+        else if segue.identifier == "showHostForm" {
+            
         }
     }
 
@@ -84,9 +93,9 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PostingTableViewCell
         
-        // learn how to set profile image programmatically
-//        cell.profileImageView.image = UIImage(contentsOfFile: "./USavvy/Images.xcassets/steve-profile")
-        cell.profileImageView.layer.cornerRadius = 38
+        // setting image programmatically
+        cell.profileImageView.image = UIImage(named: "steve-profile")
+        cell.profileImageView.layer.cornerRadius = 38 // 38 because width and height are 76 (76/2)
         cell.profileImageView.clipsToBounds = true
         cell.profileImageView.layer.borderWidth = 3
         cell.profileImageView.layer.borderColor = UIColor.orangeColor().CGColor

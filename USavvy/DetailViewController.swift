@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    
 
     @IBAction func logOutUser(sender: AnyObject) {
         PFUser.logOut()
@@ -27,12 +27,17 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
+//        if let detail: AnyObject = self.detailItem {
+//            if let label = self.detailDescriptionLabel {
+//                self.title = detail.description
+//                label.text = detail.description
+//            }
+//        }
+        
+        
     }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
