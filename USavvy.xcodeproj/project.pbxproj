@@ -30,6 +30,7 @@
 		E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA01A20FD2500CB0455 /* SplitViewController.swift */; };
 		E183DEA31A225F5C00CB0455 /* PostingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */; };
 		E183DEA51A2270AC00CB0455 /* HostFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA41A2270AC00CB0455 /* HostFormViewController.swift */; };
+		E1A24C781A2375D400DDB426 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A24C771A2375D400DDB426 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		E183DEA01A20FD2500CB0455 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingTableViewCell.swift; sourceTree = "<group>"; };
 		E183DEA41A2270AC00CB0455 /* HostFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostFormViewController.swift; sourceTree = "<group>"; };
+		E1A24C771A2375D400DDB426 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		E183DE501A1FF2E400CB0455 = {
 			isa = PBXGroup;
 			children = (
+				E1A24C771A2375D400DDB426 /* ProfileViewController.swift */,
 				E183DE991A1FF55000CB0455 /* USavvy-Bridging-Header.h */,
 				E183DE981A1FF52700CB0455 /* Frameworks */,
 				E183DE5B1A1FF2E400CB0455 /* USavvy */,
@@ -291,6 +294,7 @@
 				E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */,
 				E183DE631A1FF2E400CB0455 /* DetailViewController.swift in Sources */,
 				E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */,
+				E1A24C781A2375D400DDB426 /* ProfileViewController.swift in Sources */,
 				E183DE5F1A1FF2E400CB0455 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

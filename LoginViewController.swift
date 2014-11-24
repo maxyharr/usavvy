@@ -26,7 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         // Do stuff after successful login.
                         //self.dismissViewControllerAnimated(true, completion: nil)
                         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-                        delegate.setUpRootViewController(true, animated: true)
+                        delegate.setUpRootViewController(true, animated: true, alert: false)
                     } else {
                         println(error.localizedFailureReason)
                         // The login failed. Check error to see why.
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             println("Signing up succeeded")
                             //self.dismissViewControllerAnimated(true, completion: nil)
                             let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-                            delegate.setUpRootViewController(true, animated: true)
+                            delegate.setUpRootViewController(true, animated: true, alert: false)
                         } else {
                             println("Signing up failed")
                             //let errorString = error.userInfo["error"] as NSString

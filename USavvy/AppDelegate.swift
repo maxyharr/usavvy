@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("ULjqQwhr3m7aVEqDgZ8VQMlrbTGaaWujloMFjkJJ", clientKey: "Qy24JHY8a8t0DnYwvj9uaj56JK3Lgcp0RJzFjsZ9")
         var loggedIn = (PFUser.currentUser() != nil)
-        setUpRootViewController(loggedIn, animated: loggedIn)
+        setUpRootViewController(loggedIn, animated: loggedIn, alert: false)
         return true
     }
     
-    func setUpRootViewController(loggedIn: Bool, animated: Bool) {
+    func setUpRootViewController(loggedIn: Bool, animated: Bool, alert: Bool) {
         if let window = self.window {
             var newRootViewController: UIViewController? = nil
             var transition: UIViewAnimationOptions
@@ -50,6 +50,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                     }, completion: nil)
                 } else {
                     window.rootViewController = rootVC
+                }
+                
+                if alert == true {
+                    let alert = UIAlertView()
+                    alert.title = "Logged Out"
+                    alert.message = "Successfully logged out"
+                    alert.addButtonWithTitle("Ok")
+                    alert.show()
                 }
             }
         }
