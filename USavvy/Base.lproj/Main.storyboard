@@ -451,7 +451,7 @@
                     <navigationItem key="navigationItem" title="Find an Experience" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" title="My Profile" id="aUr-aH-ZLb">
                             <connections>
-                                <segue destination="dDK-OV-En8" kind="show" id="E99-oI-Ser"/>
+                                <segue destination="dDK-OV-En8" kind="show" identifier="profileSegue" id="E99-oI-Ser"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Wl-Tx-eUj">

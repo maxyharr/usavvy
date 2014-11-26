@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController, HostFormViewControllerDelegate {
+class MasterViewController: UITableViewController, HostFormViewControllerDelegate, ProfileViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
     var postings = NSMutableArray()
@@ -30,17 +30,12 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     override func viewDidAppear(animated: Bool) {
         // make sure to pull in new data when view loads (only for now, want to require action (pull down) that updates the postings data)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-        }
-        
+    
+    func refreshPostings() {
         var query = PFQuery(className:"Posting")
         var postingsTemp = query.findObjects()
         if postingsTemp.count > 0 {
+            self.postings.removeAllObjects()
             for parsePosting in postingsTemp {
                 let title = parsePosting["title"]! as String
                 let numHours = parsePosting["numHours"]! as String
@@ -59,7 +54,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                         println("loaded in background image in viewDidLoad")
                     }
                 }
-
+                
                 // get user from posting (so we can get the profpic)
                 let parseUser = parsePosting["user"]! as? PFUser
                 let userid = parseUser?.objectId as String!
@@ -87,6 +82,16 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                 }
             }
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let split = self.splitViewController {
+            let controllers = split.viewControllers
+            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
+        }
+        
+        refreshPostings()
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,6 +138,11 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
             let hostFormViewController:HostFormViewController = segue.destinationViewController as HostFormViewController
             hostFormViewController.delegate = self
         }
+        
+        else if segue.identifier == "profileSegue" {
+            let profileViewController:ProfileViewController = segue.destinationViewController as ProfileViewController
+            profileViewController.delegate = self
+        }
     }
 
     // MARK: - Table View
@@ -178,6 +188,11 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    func userDidFinishUpdatingProfile() {
+        refreshPostings()
+    }
+    
 
 
 }

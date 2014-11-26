@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol ProfileViewControllerDelegate {
+    func userDidFinishUpdatingProfile()
+}
+
+
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+    var delegate:ProfileViewControllerDelegate? = nil
+    
     var user = PFUser.currentUser()
     
     @IBOutlet weak var firstNameField: UITextField!
@@ -103,27 +110,34 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBAction func changeEmail(sender: AnyObject) {
     }
     @IBAction func saveChanges(sender: AnyObject) {
-        user["firstName"] = self.firstNameField.text
-        user["lastName"] = self.lastNameField.text
-        user["personalDescription"] = self.descriptionTextView.text
-        user.saveInBackgroundWithBlock(nil)
-        
-        let imageData = UIImagePNGRepresentation(self.profileImageView.image)
-        let imageFile = PFFile(name:"image.png", data:imageData)
-        
-        var userPhoto = PFObject(className:"UserPhoto")
-        userPhoto["imageName"] = "\(user.email)\'s profile\'s image"
-        userPhoto["imageFile"] = imageFile
-        userPhoto.saveInBackgroundWithBlock(nil)
-        
-        user["profilePicture"] = imageFile
-        user.saveInBackgroundWithBlock(nil)
-        
-        let alert = UIAlertView()
-        alert.title = "Saved"
-        alert.message = "Profile successfully updated"
-        alert.addButtonWithTitle("Ok")
-        alert.show()
+        if delegate != nil {
+            user["firstName"] = self.firstNameField.text
+            user["lastName"] = self.lastNameField.text
+            user["personalDescription"] = self.descriptionTextView.text
+            user.saveInBackgroundWithBlock(nil)
+            
+            let imageData = UIImagePNGRepresentation(self.profileImageView.image)
+            let imageFile = PFFile(name:"image.png", data:imageData)
+            
+            var userPhoto = PFObject(className:"UserPhoto")
+            userPhoto["imageName"] = "\(user.email)\'s profile\'s image"
+            userPhoto["imageFile"] = imageFile
+            userPhoto.saveInBackgroundWithBlock(nil)
+            
+            user["profilePicture"] = imageFile
+            user.saveInBackgroundWithBlock {
+                (success: Bool!, error: NSError!) -> Void in
+                if error == nil {
+                    let alert = UIAlertView()
+                    alert.title = "Saved"
+                    alert.message = "Profile successfully updated"
+                    alert.addButtonWithTitle("Ok")
+                    alert.show()
+                    self.delegate!.userDidFinishUpdatingProfile()
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            }
+        }
     }
     
     @IBAction func logOutUser(sender: AnyObject) {
