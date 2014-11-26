@@ -145,6 +145,7 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                 // create image file in Parse
                 let imageData = UIImagePNGRepresentation(self.experienceImageView.image)
                 let imageFile = PFFile(name:"\(self.titleField.text).png", data:imageData)
+                
                 var experiencePhoto = PFObject(className:"ExperiencePhoto")
                 experiencePhoto["imageName"] = "\(self.titleField.text)\'s image"
                 experiencePhoto["imageFile"] = imageFile
@@ -156,8 +157,9 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                 parsePosting["numGuests"] = self.guestsField.text
                 parsePosting["numHours"] = self.hoursField.text
                 parsePosting["description"] = self.descriptionTextView.text
+                
                 // set postings image to image created above
-                parsePosting["ExperiencePhoto"] = imageFile
+                parsePosting["experiencePhoto"] = imageFile
                 parsePosting["user"] = user
                 
                 // save posting
@@ -177,20 +179,17 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                             let image = UIImage(data:imageData)
                             profPicImage = image!
                             println("saved User profile image successfully!")
+                            
+                            
+                            // Finally create an object to return to the Postings array in the Master
+                            let posting = Posting(title: self.titleField.text, numGuests: self.guestsField.text, numHours: self.hoursField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
+                            self.delegate!.didFinishCreatingPosting(posting)
+                            self.navigationController?.popViewControllerAnimated(true)
                         }
                     }
                 }
-                
-                
-                // Finally create an object to return to the Postings array in the Master
-                let posting = Posting(title: self.titleField.text, numGuests: self.guestsField.text, numHours: self.hoursField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
-                delegate!.didFinishCreatingPosting(posting)
-                self.navigationController?.popViewControllerAnimated(true)
             }
-            
-            
         }
-        
     }
 
     override func viewDidLoad() {
