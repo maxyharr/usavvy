@@ -8,11 +8,17 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, HostFormViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
-    var objects = NSMutableArray()
+    var postings = NSMutableArray()
 
+    // callback from HostFromViewControllerDelegate when user finishes creating a posting
+    func didFinishCreatingPosting(posting: Posting) {
+        postings.insertObject(posting, atIndex: 0)
+        self.tableView.reloadData()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -20,63 +26,98 @@ class MasterViewController: UITableViewController {
             self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
     }
-//    @IBAction func addExperience(sender: AnyObject) {
-//        insertNewObject(sender)
-//    }
     
     override func viewDidAppear(animated: Bool) {
-        // Commented code below is now taken care of in the AppDelagate in order to work with iPad MasterDetailView constraints
-        
-//        if (PFUser.currentUser() == nil) {
-//            let storyboard = self.storyboard!
-//            let LoginVC = storyboard.instantiateViewControllerWithIdentifier("login") as? LoginViewController
-//            LoginVC?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-//            self.presentViewController(LoginVC!, animated: true, completion: nil)
-//        }
+        // make sure to pull in new data when view loads (only for now, want to require action (pull down) that updates the postings data)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-//        self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
         
-        // ONLY HERE TO TEST THE LOG IN PAGE - Remove on actual implementation
-        //PFUser.logOut()
-    }
-    
-        func insertNewObject(sender: AnyObject) {
-            objects.insertObject(NSDate(), atIndex: 0)
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        var query = PFQuery(className:"Posting")
+        var postingsTemp = query.findObjects()
+        if postingsTemp.count > 0 {
+            for parsePosting in postingsTemp {
+                let title = parsePosting["title"]! as String
+                let numHours = parsePosting["numHours"]! as String
+                let numGuests = parsePosting["numGuests"]! as String
+                let description = parsePosting["description"]! as String
+                let imageFile = parsePosting["ExperiencePhoto"]! as PFFile
+                
+                var backgroundPhoto:UIImage? = nil
+                
+                // extract the background UIImage from the imageFile and store in 'backgroundPhoto'
+                imageFile.getDataInBackgroundWithBlock {
+                    (imageData: NSData!, error: NSError!) -> Void in
+                    if error == nil {
+                        let image = UIImage(data:imageData)
+                        backgroundPhoto = image
+                        println("loaded in background image in viewDidLoad")
+                    }
+                }
+
+                // get user from posting (so we can get the profpic)
+                let parseUser = parsePosting["user"]! as? PFUser
+                let userid = parseUser?.objectId as String!
+                let query = PFUser.query()
+                let retrievedUser = query.getObjectWithId(userid)
+                
+                // get user's profpic to store in iOS object
+                var profPic:UIImage? = nil
+                let profileImageFile = retrievedUser["profilePicture"]! as PFFile
+                profileImageFile.getDataInBackgroundWithBlock {
+                    (imageData: NSData!, error: NSError!) -> Void in
+                    if error == nil {
+                        let image = UIImage(data:imageData)
+                        profPic = image
+                        
+                        // create a posting object
+                        let posting = Posting(title: title, numGuests: numGuests, numHours: numHours, description: description, picture: backgroundPhoto!, profPic: profPic!)
+                        
+                        self.postings.insertObject(posting, atIndex: 0)
+                        self.tableView.reloadData()
+                        println("found profPicImage")
+                    } else {
+                        println("didn't find profPicImage")
+                    }
+                }
+            }
         }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showDetail", sender: indexPath)
+    }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // User wants to show the posting details for a specific one
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as NSDate
+            
+            if let indexPath = sender as? NSIndexPath {
+                let posting = postings[indexPath.row] as Posting
                 let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+//                controller.detailItem = posting
+//                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+//                controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
         
-        else if segue.identifier == "showHostForm" {
-            
+        // User wants to create a new posting
+        else if segue.identifier == "pushHostFormSegue" {
+            let hostFormViewController:HostFormViewController = segue.destinationViewController as HostFormViewController
+            hostFormViewController.delegate = self
         }
     }
 
@@ -87,32 +128,37 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return postings.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let posting = postings[indexPath.row] as Posting
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PostingTableViewCell
         
-        // setting image programmatically
-        cell.profileImageView.image = UIImage(named: "steve-profile")
+        cell.backgroundImageView.image  = posting.picture
+        cell.titleLabel.text = posting.title
+        cell.hoursLabel.text = "\(posting.numHours) hour(s) :"
+        cell.guestsLabel.text = "\(posting.numGuests) guest(s)"
+        
+        // setting profile image programmatically
+        cell.profileImageView.image = posting.profPic
         cell.profileImageView.layer.cornerRadius = 38 // 38 because width and height are 76 (76/2)
         cell.profileImageView.clipsToBounds = true
         cell.profileImageView.layer.borderWidth = 3
         cell.profileImageView.layer.borderColor = UIColor.orangeColor().CGColor
         
-//        let object = objects[indexPath.row] as NSDate
-//        cell.textLabel.text = object.description
         return cell
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return false
+        return true
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            objects.removeObjectAtIndex(indexPath.row)
+            postings.removeObjectAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

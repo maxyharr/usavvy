@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -194,10 +195,10 @@
             </objects>
             <point key="canvasLocation" x="-856" y="-330"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--My Profile-->
         <scene sceneID="3i4-T7-jW5">
             <objects>
-                <viewController id="dDK-OV-En8" customClass="ProfileViewController" customModule="USavvy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Profile" id="dDK-OV-En8" customClass="ProfileViewController" customModule="USavvy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JGZ-m1-lb5"/>
                         <viewControllerLayoutGuide type="bottom" id="Nqe-XS-vwo"/>
@@ -374,10 +375,19 @@
                                                         <color key="textColor" red="0.97289540819999998" green="0.60962395439999995" blue="0.22923785939999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2-4 Hours : 1-6 People" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-vb-RNa">
-                                                        <rect key="frame" x="460" y="18" width="132" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-6 People" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-vb-RNa">
+                                                        <rect key="frame" x="535" y="18" width="65" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="132" id="PBp-wf-gHc"/>
+                                                            <constraint firstAttribute="width" constant="65" id="JHF-e8-zsF"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2-4 Hours :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-a8-LGy">
+                                                        <rect key="frame" x="470" y="18" width="65" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="65" id="DZl-W6-J55"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -385,12 +395,15 @@
                                                     </label>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="leading" secondItem="NXa-a8-LGy" secondAttribute="trailing" id="1vN-dI-nY4"/>
                                                     <constraint firstItem="K0x-uf-mV9" firstAttribute="top" secondItem="odh-CE-vcA" secondAttribute="top" constant="18" id="3qn-Gg-rba"/>
-                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="trailing" secondItem="odh-CE-vcA" secondAttribute="trailingMargin" id="Aha-NM-RLI"/>
-                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="centerY" secondItem="odh-CE-vcA" secondAttribute="centerY" id="c5K-gy-1ZG"/>
+                                                    <constraint firstItem="NXa-a8-LGy" firstAttribute="top" secondItem="K0x-uf-mV9" secondAttribute="top" id="4Tm-rr-pqI"/>
+                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="centerY" secondItem="odh-CE-vcA" secondAttribute="centerY" id="MWN-QH-TQc"/>
+                                                    <constraint firstItem="NXa-a8-LGy" firstAttribute="firstBaseline" secondItem="RXJ-vb-RNa" secondAttribute="firstBaseline" id="O2Q-uQ-lId"/>
                                                     <constraint firstItem="K0x-uf-mV9" firstAttribute="leading" secondItem="odh-CE-vcA" secondAttribute="leadingMargin" id="hvL-U9-4Jo"/>
-                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="bottom" secondItem="K0x-uf-mV9" secondAttribute="bottom" id="mII-iB-qq4"/>
-                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="top" secondItem="K0x-uf-mV9" secondAttribute="top" id="z2G-e1-gzb"/>
+                                                    <constraint firstItem="NXa-a8-LGy" firstAttribute="bottom" secondItem="K0x-uf-mV9" secondAttribute="bottom" id="qbJ-cK-3sk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RXJ-vb-RNa" secondAttribute="trailing" id="sFO-L5-vIh"/>
+                                                    <constraint firstItem="RXJ-vb-RNa" firstAttribute="baseline" secondItem="NXa-a8-LGy" secondAttribute="baseline" id="wVM-Qo-R12"/>
                                                 </constraints>
                                             </view>
                                             <constraints>
@@ -420,7 +433,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="backgroundImageView" destination="fq8-bW-Hxd" id="wKo-4R-FqT"/>
+                                    <outlet property="guestsLabel" destination="RXJ-vb-RNa" id="G4O-c7-sn0"/>
+                                    <outlet property="hoursLabel" destination="NXa-a8-LGy" id="d7i-Gi-dPA"/>
                                     <outlet property="profileImageView" destination="6Lk-vu-TqQ" id="fgu-e5-gH0"/>
+                                    <outlet property="titleLabel" destination="K0x-uf-mV9" id="24Y-Xo-V6H"/>
                                     <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
                                 </connections>
                             </tableViewCell>
@@ -440,7 +457,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Wl-Tx-eUj">
                             <connections>
                                 <action selector="addExperience:" destination="7bK-jq-Zjz" id="Tga-4R-Uc0"/>
-                                <segue destination="q2Q-cS-ZyU" kind="show" id="eX8-wO-aQU"/>
+                                <segue destination="q2Q-cS-ZyU" kind="show" identifier="pushHostFormSegue" id="eX8-wO-aQU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -449,10 +466,10 @@
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
         </scene>
-        <!--Host Form View Controller-->
+        <!--Host an Experience-->
         <scene sceneID="GIc-6Q-8aq">
             <objects>
-                <viewController id="q2Q-cS-ZyU" customClass="HostFormViewController" customModule="USavvy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Host an Experience" id="q2Q-cS-ZyU" customClass="HostFormViewController" customModule="USavvy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xyx-eS-omo"/>
                         <viewControllerLayoutGuide type="bottom" id="2Zq-Lg-xeE"/>
@@ -469,12 +486,12 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of Guests" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="azi-dI-k8G">
                                 <rect key="frame" x="16" y="110" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of hours" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lBl-if-Q1f">
                                 <rect key="frame" x="16" y="148" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5f-lL-h0I">
                                 <rect key="frame" x="16" y="186" width="115" height="30"/>
@@ -500,13 +517,31 @@
                                     <constraint firstAttribute="height" constant="152" id="mff-SB-CNt"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2p-3S-aow">
+                                <rect key="frame" x="16" y="408" width="568" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="YE3-4c-lZN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gw-Dh-ywm">
+                                <rect key="frame" x="16" y="379" width="93" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lBl-if-Q1f" firstAttribute="trailing" secondItem="uZP-nt-udR" secondAttribute="trailingMargin" id="3OE-Bh-eDr"/>
+                            <constraint firstItem="hV2-ix-lKU" firstAttribute="top" secondItem="K2p-3S-aow" secondAttribute="bottom" constant="26" id="5Qj-sH-Yb9"/>
                             <constraint firstItem="qJa-xX-zlg" firstAttribute="leading" secondItem="uZP-nt-udR" secondAttribute="leadingMargin" id="76o-YC-vga"/>
                             <constraint firstItem="azi-dI-k8G" firstAttribute="trailing" secondItem="o6b-FR-mjA" secondAttribute="trailing" id="7PI-Bg-TxK"/>
                             <constraint firstItem="hV2-ix-lKU" firstAttribute="leading" secondItem="qJa-xX-zlg" secondAttribute="leading" id="8s7-Nk-kHS"/>
+                            <constraint firstItem="K2p-3S-aow" firstAttribute="trailing" secondItem="qJa-xX-zlg" secondAttribute="trailing" id="EUU-Sg-9cx"/>
+                            <constraint firstItem="3Gw-Dh-ywm" firstAttribute="leading" secondItem="uZP-nt-udR" secondAttribute="leadingMargin" id="HdH-n3-bOh"/>
                             <constraint firstItem="lBl-if-Q1f" firstAttribute="trailing" secondItem="qJa-xX-zlg" secondAttribute="trailing" id="IfA-M3-14K"/>
                             <constraint firstItem="azi-dI-k8G" firstAttribute="top" secondItem="o6b-FR-mjA" secondAttribute="bottom" constant="8" symbolic="YES" id="J9c-3t-DnY"/>
                             <constraint firstItem="qJa-xX-zlg" firstAttribute="top" secondItem="G5f-lL-h0I" secondAttribute="bottom" constant="3" id="KB4-md-wPS"/>
@@ -518,10 +553,13 @@
                             <constraint firstItem="o6b-FR-mjA" firstAttribute="leading" secondItem="azi-dI-k8G" secondAttribute="leading" id="bTv-n6-Gyw"/>
                             <constraint firstItem="G5f-lL-h0I" firstAttribute="leading" secondItem="lBl-if-Q1f" secondAttribute="leading" id="dfQ-tf-CpH"/>
                             <constraint firstItem="azi-dI-k8G" firstAttribute="trailing" secondItem="lBl-if-Q1f" secondAttribute="trailing" id="f79-Sr-RvL"/>
+                            <constraint firstItem="K2p-3S-aow" firstAttribute="leading" secondItem="hV2-ix-lKU" secondAttribute="leading" id="iuq-GM-s98"/>
+                            <constraint firstItem="K2p-3S-aow" firstAttribute="top" secondItem="3Gw-Dh-ywm" secondAttribute="bottom" constant="8" id="mzf-La-8PG"/>
                             <constraint firstItem="lBl-if-Q1f" firstAttribute="top" secondItem="azi-dI-k8G" secondAttribute="bottom" constant="8" symbolic="YES" id="sDZ-WW-eau"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descriptionTextView" destination="K2p-3S-aow" id="HrP-QP-Sa7"/>
                         <outlet property="experienceImageView" destination="qJa-xX-zlg" id="eUZ-bl-92k"/>
                         <outlet property="guestsField" destination="azi-dI-k8G" id="gt5-s8-Dj7"/>
                         <outlet property="hoursField" destination="lBl-if-Q1f" id="2vk-g9-g0s"/>
@@ -531,7 +569,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z06-Rw-8Zc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="-630"/>
+            <point key="canvasLocation" x="1506" y="-641"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">

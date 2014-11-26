@@ -11,6 +11,10 @@ import UIKit
 class PostingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
+    @IBOutlet weak var guestsLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImageView.layer.cornerRadius = 38
