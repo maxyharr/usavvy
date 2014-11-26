@@ -23,8 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     (user: PFUser!, error: NSError!) -> Void in
                     if user != nil {
                         println("Signing in \(PFUser.currentUser().email) succeeded")
-                        // Do stuff after successful login.
-                        //self.dismissViewControllerAnimated(true, completion: nil)
+                        // Do stuff after successful login
                         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
                         delegate.setUpRootViewController(true, animated: true, alert: false)
                     } else {
@@ -48,7 +47,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     user.username = emailSignUpField.text
                     user.email = emailSignUpField.text
                     user.password = passwordSignUpField.text
-                    
                     user.signUpInBackgroundWithBlock {
                         (succeeded: Bool!, error: NSError!) -> Void in
                         if error == nil {

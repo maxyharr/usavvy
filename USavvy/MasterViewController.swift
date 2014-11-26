@@ -46,7 +46,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                 let numHours = parsePosting["numHours"]! as String
                 let numGuests = parsePosting["numGuests"]! as String
                 let description = parsePosting["description"]! as String
-                let imageFile = parsePosting["ExperiencePhoto"]! as PFFile
+                let imageFile = parsePosting["experiencePhoto"]! as PFFile
                 
                 var backgroundPhoto:UIImage? = nil
                 
@@ -99,6 +99,20 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     }
 
     // MARK: - Segues
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        let user = PFUser.currentUser()
+        if identifier == "pushHostFormSegue" {
+            if user["profilePicture"] == nil || user["firstName"] == nil || user["lastName"] == nil || user["personalDescription"] == nil {
+                let alert = UIAlertView()
+                alert.title = "Update Profile"
+                alert.message = "You must complete your profile before creating a posting"
+                alert.addButtonWithTitle("Ok")
+                alert.show()
+                return false
+            }
+        }
+        return true
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
