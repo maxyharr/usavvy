@@ -40,10 +40,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.openCamera()
                 
         }
-        var gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.Default)
+        var galleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
-                self.openGallary()
+                self.openGallery()
         }
         var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
             {
@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
         // Add the actions
         alert.addAction(cameraAction)
-        alert.addAction(gallaryAction)
+        alert.addAction(galleryAction)
         alert.addAction(cancelAction)
         // Present the actionsheet
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone
@@ -91,7 +91,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    func openGallary()
+    func openGallery()
     {
         println("opened gallery")
         

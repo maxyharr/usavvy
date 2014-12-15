@@ -38,10 +38,10 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                 self.openCamera()
                 
         }
-        var gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.Default)
+        var galleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
-                self.openGallary()
+                self.openGallery()
         }
         var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
             {
@@ -50,7 +50,7 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
         }
         // Add the actions
         alert.addAction(cameraAction)
-        alert.addAction(gallaryAction)
+        alert.addAction(galleryAction)
         alert.addAction(cancelAction)
         // Present the actionsheet
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone
@@ -90,7 +90,7 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
             }
     }
     
-    func openGallary()
+    func openGallery()
     {
         println("opened gallery")
         
@@ -208,8 +208,9 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return false
+        return true
     }
+
 
     /*
     // MARK: - Navigation
