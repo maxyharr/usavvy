@@ -31,6 +31,8 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         // make sure to pull in new data when view loads (only for now, want to require action (pull down) that updates the postings data)
     }
     
+    // Pull in new data about postings in the marketplace that are available
+    // TODO: Explain how this is being performed - Right now it is working, but horribly ineficiently
     func refreshPostings() {
         var query = PFQuery(className:"Posting")
         var postingsTemp = query.findObjects()
@@ -52,32 +54,40 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                         let image = UIImage(data:imageData)
                         backgroundPhoto = image
                         println("loaded in background image in viewDidLoad")
-                    }
-                }
-                
-                // get user from posting (so we can get the profpic)
-                let parseUser = parsePosting["user"]! as? PFUser
-                let userid = parseUser?.objectId as String!
-                let query = PFUser.query()
-                let retrievedUser = query.getObjectWithId(userid)
-                
-                // get user's profpic to store in iOS object
-                var profPic:UIImage? = nil
-                let profileImageFile = retrievedUser["profilePicture"]! as PFFile
-                profileImageFile.getDataInBackgroundWithBlock {
-                    (imageData: NSData!, error: NSError!) -> Void in
-                    if error == nil {
-                        let image = UIImage(data:imageData)
-                        profPic = image
                         
-                        // create a posting object
-                        let posting = Posting(title: title, numGuests: numGuests, numHours: numHours, description: description, picture: backgroundPhoto!, profPic: profPic!)
+                        // get user from posting (so we can get the profpic)
+                        let parseUser = parsePosting["user"]! as? PFUser
+                        let userid = parseUser?.objectId as String!
+                        let query = PFUser.query()
+                        query.getObjectInBackgroundWithId(userid){
+                            (retrievedUser: PFObject!, error: NSError!) -> Void in
+                            if error == nil {
+                                // get user's profpic to store in iOS object
+                                var profPic:UIImage? = nil
+                                let profileImageFile = retrievedUser["profilePicture"]! as PFFile
+                                profileImageFile.getDataInBackgroundWithBlock {
+                                    (imageData: NSData!, error: NSError!) -> Void in
+                                    if error == nil {
+                                        println("found profPicImage")
+                                        let image = UIImage(data:imageData)
+                                        profPic = image
+                                        
+                                        // create a posting object
+                                        let posting = Posting(title: title, numGuests: numGuests, numHours: numHours, description: description, picture: backgroundPhoto!, profPic: profPic!)
+                                        
+                                        self.postings.insertObject(posting, atIndex: 0)
+                                        self.tableView.reloadData()
+                                    } else {
+                                        println("didn't find profPicImage")
+                                    }
+                                }
+                            } else {
+                                NSLog("%@", error)
+                            }
+                        }
                         
-                        self.postings.insertObject(posting, atIndex: 0)
-                        self.tableView.reloadData()
-                        println("found profPicImage")
                     } else {
-                        println("didn't find profPicImage")
+                        println("Couldn't find the background photo!")
                     }
                 }
             }
