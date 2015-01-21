@@ -36,61 +36,68 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     func refreshPostings() {
         // this is a test comment
         var query = PFQuery(className:"Posting")
-        var postingsTemp = query.findObjects()
-        if postingsTemp.count > 0 {
-            self.postings.removeAllObjects()
-            for parsePosting in postingsTemp {
-                let title = parsePosting["title"]! as String
-                let numHours = parsePosting["numHours"]! as String
-                let numGuests = parsePosting["numGuests"]! as String
-                let description = parsePosting["description"]! as String
-                let imageFile = parsePosting["experiencePhoto"]! as PFFile
-                
-                var backgroundPhoto:UIImage? = nil
-                
-                // extract the background UIImage from the imageFile and store in 'backgroundPhoto'
-                imageFile.getDataInBackgroundWithBlock {
-                    (imageData: NSData!, error: NSError!) -> Void in
-                    if error == nil {
-                        let image = UIImage(data:imageData)
-                        backgroundPhoto = image
-                        println("loaded in background image in viewDidLoad")
+        //var postingsTemp = query.findObjects()
+        query.findObjectsInBackgroundWithBlock {
+                (postingsTemp: [AnyObject]!, error: NSError!) -> Void in
+            if error == nil {
+                if postingsTemp.count > 0 {
+                    self.postings.removeAllObjects()
+                    for parsePosting in postingsTemp {
+                        let title = parsePosting["title"]! as String
+                        let numHours = parsePosting["numHours"]! as String
+                        let numGuests = parsePosting["numGuests"]! as String
+                        let description = parsePosting["description"]! as String
+                        let imageFile = parsePosting["experiencePhoto"]! as PFFile
                         
-                        // get user from posting (so we can get the profpic)
-                        let parseUser = parsePosting["user"]! as? PFUser
-                        let userid = parseUser?.objectId as String!
-                        let query = PFUser.query()
-                        query.getObjectInBackgroundWithId(userid){
-                            (retrievedUser: PFObject!, error: NSError!) -> Void in
+                        var backgroundPhoto:UIImage? = nil
+                        
+                        // extract the background UIImage from the imageFile and store in 'backgroundPhoto'
+                        imageFile.getDataInBackgroundWithBlock {
+                            (imageData: NSData!, error: NSError!) -> Void in
                             if error == nil {
-                                // get user's profpic to store in iOS object
-                                var profPic:UIImage? = nil
-                                let profileImageFile = retrievedUser["profilePicture"]! as PFFile
-                                profileImageFile.getDataInBackgroundWithBlock {
-                                    (imageData: NSData!, error: NSError!) -> Void in
+                                let image = UIImage(data:imageData)
+                                backgroundPhoto = image
+                                println("loaded in background image in viewDidLoad")
+                                
+                                // get user from posting (so we can get the profpic)
+                                let parseUser = parsePosting["user"]! as? PFUser
+                                let userid = parseUser?.objectId as String!
+                                let query = PFUser.query()
+                                query.getObjectInBackgroundWithId(userid){
+                                    (retrievedUser: PFObject!, error: NSError!) -> Void in
                                     if error == nil {
-                                        println("found profPicImage")
-                                        let image = UIImage(data:imageData)
-                                        profPic = image
-                                        
-                                        // create a posting object
-                                        let posting = Posting(title: title, numGuests: numGuests, numHours: numHours, description: description, picture: backgroundPhoto!, profPic: profPic!)
-                                        
-                                        self.postings.insertObject(posting, atIndex: 0)
-                                        self.tableView.reloadData()
+                                        // get user's profpic to store in iOS object
+                                        var profPic:UIImage? = nil
+                                        let profileImageFile = retrievedUser["profilePicture"]! as PFFile
+                                        profileImageFile.getDataInBackgroundWithBlock {
+                                            (imageData: NSData!, error: NSError!) -> Void in
+                                            if error == nil {
+                                                println("found profPicImage")
+                                                let image = UIImage(data:imageData)
+                                                profPic = image
+                                                
+                                                // create a posting object
+                                                let posting = Posting(title: title, numGuests: numGuests, numHours: numHours, description: description, picture: backgroundPhoto!, profPic: profPic!)
+                                                
+                                                self.postings.insertObject(posting, atIndex: 0)
+                                                self.tableView.reloadData()
+                                            } else {
+                                                println("didn't find profPicImage")
+                                            }
+                                        }
                                     } else {
-                                        println("didn't find profPicImage")
+                                        NSLog("%@", error)
                                     }
                                 }
+                                
                             } else {
-                                NSLog("%@", error)
+                                println("Couldn't find the background photo!")
                             }
                         }
-                        
-                    } else {
-                        println("Couldn't find the background photo!")
                     }
                 }
+            } else {
+                println("Couldn't retrieve postings %@", error)
             }
         }
     }

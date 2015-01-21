@@ -116,7 +116,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             user["personalDescription"] = self.descriptionTextView.text
             user.saveInBackgroundWithBlock(nil)
             
-            let imageData = UIImagePNGRepresentation(self.profileImageView.image)
+            let imageData = UIImageJPEGRepresentation(self.profileImageView.image, 0.9)
             let imageFile = PFFile(name:"image.png", data:imageData)
             
             var userPhoto = PFObject(className:"UserPhoto")
@@ -128,6 +128,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             user.saveInBackgroundWithBlock {
                 (success: Bool!, error: NSError!) -> Void in
                 if error == nil {
+                    println("Successfully saved the changes!")
                     let alert = UIAlertView()
                     alert.title = "Saved"
                     alert.message = "Profile successfully updated"

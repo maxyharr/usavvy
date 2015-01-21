@@ -143,7 +143,7 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                 // ###################################################################
                 
                 // create image file in Parse
-                let imageData = UIImagePNGRepresentation(self.experienceImageView.image)
+                let imageData = UIImageJPEGRepresentation(self.experienceImageView.image, 0.9)
                 let imageFile = PFFile(name:"\(self.titleField.text).png", data:imageData)
                 
                 var experiencePhoto = PFObject(className:"ExperiencePhoto")
