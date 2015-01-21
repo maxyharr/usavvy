@@ -34,6 +34,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     // Pull in new data about postings in the marketplace that are available
     // TODO: Explain how this is being performed - Right now it is working, but horribly ineficiently
     func refreshPostings() {
+        // this is a test comment
         var query = PFQuery(className:"Posting")
         var postingsTemp = query.findObjects()
         if postingsTemp.count > 0 {

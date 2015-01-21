@@ -113,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				E183DE991A1FF55000CB0455 /* USavvy-Bridging-Header.h */,
-				E183DE981A1FF52700CB0455 /* Frameworks */,
 				E183DE5B1A1FF2E400CB0455 /* USavvy */,
+				E183DE981A1FF52700CB0455 /* Frameworks */,
 				E183DE731A1FF2E400CB0455 /* USavvyTests */,
 				E183DE5A1A1FF2E400CB0455 /* Products */,
 			);
