@@ -34,6 +34,9 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     
     override func viewDidAppear(animated: Bool) {
         // make sure to pull in new data when view loads (only for now, want to require action (pull down) that updates the postings data)
+        
+        var nav = self.navigationController?.navigationBar
+        nav?.tintColor = UIColor.orangeColor()
     }
     
     // Pull in new data about postings in the marketplace that are available
@@ -41,7 +44,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     func refreshPostings() {
         // this is a test comment
         var query = PFQuery(className:"Posting")
-        //var postingsTemp = query.findObjects()
         query.findObjectsInBackgroundWithBlock {
                 (postingsTemp: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
@@ -63,8 +65,8 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                                 println("loaded in background image in viewDidLoad")
                                 
                                 // get user from posting (so we can get the profpic)
-                                let parseUser = parsePosting["user"]! as? PFUser
-                                let userid = parseUser?.objectId as String!
+                                let parseUser = parsePosting["user"] as PFUser
+                                let userid = parseUser.objectId as String!
                                 let query = PFUser.query()
                                 query.getObjectInBackgroundWithId(userid){
                                     (retrievedUser: PFObject!, error: NSError!) -> Void in
@@ -75,12 +77,19 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                                         profileImageFile.getDataInBackgroundWithBlock {
                                             (imageData: NSData!, error: NSError!) -> Void in
                                             if error == nil {
-                                                println("found profPicImage")
+                                                let hostFirstName = retrievedUser["firstName"] as String
+                                                let hostLastName = retrievedUser["lastName"] as String
+                                                let hostEmail = retrievedUser["email"] as String
+                                                let hostDescription = retrievedUser["personalDescription"] as String
+                                            
                                                 let image = UIImage(data:imageData)
                                                 profPic = image
                                                 
+                                                let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: profPic!)
+                                                
+                                                
                                                 // create a posting object
-                                                let posting = Posting(title: title,description: description, picture: backgroundPhoto!, profPic: profPic!)
+                                                let posting = Posting(title: title,description: description, picture: backgroundPhoto!, profPic: profPic!, host: host)
                                                 
                                                 //self.postings.insertObject(posting, atIndex: 0)
                                                 self.postings.addObject(posting)
@@ -199,9 +208,11 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         let cellWidth = UIScreen.mainScreen().bounds.width
         cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
         cell.titleLabel.text = posting.title
+        cell.hostNameLabel.text = posting.host.name
+        
         
         // setting profile image programmatically
-        cell.profileImageView.image = imageCropper.squareImageWithImage(posting.profPic, newSize: CGSizeMake(80, 80))
+        cell.profileImageView.image = imageCropper.squareImageWithImage(posting.profPic, newSize: CGSizeMake(100, 100))
         cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.width/2 // to make it a circle
         cell.profileImageView.clipsToBounds = true
         cell.profileImageView.layer.borderWidth = 3

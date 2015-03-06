@@ -166,9 +166,17 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                             profPicImage = image!
                             println("saved User profile image successfully!")
                             
+                            let hostFirstName = user["firstName"] as String
+                            let hostLastName = user["lastName"] as String
+                            let hostEmail = user["email"] as String
+                            let hostDescription = user["personalDescription"] as String
+                            
+                            let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: profPicImage!)
+                            
                             
                             // Finally create an object to return to the Postings array in the Master
-                            let posting = Posting(title: self.titleField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
+                            let posting = Posting(title: self.titleField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!, host: host)
+                            
                             self.delegate!.didFinishCreatingPosting(posting)
                             self.navigationController?.popViewControllerAnimated(true)
                         }

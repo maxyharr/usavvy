@@ -398,7 +398,7 @@
                                             <blurEffect style="dark"/>
                                         </visualEffectView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skx-fe-kHr">
-                                            <rect key="frame" x="0.0" y="264" width="600" height="57"/>
+                                            <rect key="frame" x="0.0" y="263" width="600" height="57"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="odh-CE-vcA">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +429,7 @@
                                                 </constraints>
                                             </view>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="57" id="LwH-LI-sTx"/>
+                                                <constraint firstAttribute="height" constant="57" id="BhY-Hq-J3F"/>
                                             </constraints>
                                             <blurEffect style="extraLight"/>
                                         </visualEffectView>
@@ -514,21 +514,20 @@
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="6Lk-vu-TqQ" secondAttribute="bottom" constant="38" id="3o4-Oh-RpF"/>
                                         <constraint firstItem="fq8-bW-Hxd" firstAttribute="centerY" secondItem="37f-cq-3Eg" secondAttribute="centerY" id="5CW-mC-N44"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="skx-fe-kHr" secondAttribute="bottom" constant="-9.5" id="7NE-av-De9"/>
-                                        <constraint firstItem="skx-fe-kHr" firstAttribute="top" secondItem="tfS-Oa-cBA" secondAttribute="bottom" constant="15" id="DUK-Oj-crv"/>
+                                        <constraint firstItem="skx-fe-kHr" firstAttribute="top" secondItem="tfS-Oa-cBA" secondAttribute="bottom" constant="14" id="F4V-9B-QlA"/>
+                                        <constraint firstItem="skx-fe-kHr" firstAttribute="leading" secondItem="fq8-bW-Hxd" secondAttribute="leading" id="J5Z-Dn-AXj"/>
                                         <constraint firstItem="V7o-96-2VI" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="JqV-l6-85S"/>
-                                        <constraint firstItem="V7o-96-2VI" firstAttribute="trailing" secondItem="skx-fe-kHr" secondAttribute="trailing" id="K3D-rR-9oN"/>
                                         <constraint firstAttribute="trailing" secondItem="fq8-bW-Hxd" secondAttribute="trailing" id="P5Z-eW-7cD"/>
                                         <constraint firstItem="fq8-bW-Hxd" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leading" id="SPN-jC-zLi"/>
                                         <constraint firstItem="ath-dg-QP4" firstAttribute="trailing" secondItem="tfS-Oa-cBA" secondAttribute="trailing" id="TUw-gK-fiq"/>
                                         <constraint firstItem="6Lk-vu-TqQ" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="Tp7-ss-xUs"/>
-                                        <constraint firstItem="skx-fe-kHr" firstAttribute="trailing" secondItem="fq8-bW-Hxd" secondAttribute="trailing" id="WL4-zZ-glO"/>
+                                        <constraint firstItem="skx-fe-kHr" firstAttribute="bottom" secondItem="fq8-bW-Hxd" secondAttribute="bottom" id="VZc-AC-uWT"/>
                                         <constraint firstItem="ath-dg-QP4" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" id="Z7z-iJ-LPe"/>
                                         <constraint firstItem="6Lk-vu-TqQ" firstAttribute="trailing" secondItem="AlB-H5-ZJF" secondAttribute="trailing" id="ZtX-YQ-fqz"/>
                                         <constraint firstItem="V7o-96-2VI" firstAttribute="top" secondItem="ath-dg-QP4" secondAttribute="top" id="aeY-k9-57F"/>
-                                        <constraint firstItem="skx-fe-kHr" firstAttribute="leading" secondItem="tfS-Oa-cBA" secondAttribute="leading" id="fEj-It-NDc"/>
                                         <constraint firstItem="fq8-bW-Hxd" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="top" id="lEQ-9N-VhO"/>
-                                        <constraint firstItem="skx-fe-kHr" firstAttribute="leading" secondItem="fq8-bW-Hxd" secondAttribute="leading" id="q1n-6S-gyr"/>
+                                        <constraint firstItem="skx-fe-kHr" firstAttribute="trailing" secondItem="V7o-96-2VI" secondAttribute="trailing" id="pfX-6u-GsS"/>
+                                        <constraint firstItem="skx-fe-kHr" firstAttribute="leading" secondItem="tfS-Oa-cBA" secondAttribute="leading" id="qCT-nb-4cQ"/>
                                         <constraint firstItem="6Lk-vu-TqQ" firstAttribute="leading" secondItem="AlB-H5-ZJF" secondAttribute="leading" id="rqW-uz-7Hi"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -548,7 +547,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Find an Experience" id="Zdf-7t-Un8">
+                    <navigationItem key="navigationItem" title="Search Experiences" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" title="My Profile" id="aUr-aH-ZLb">
                             <connections>
                                 <segue destination="dDK-OV-En8" kind="show" identifier="profileSegue" id="E99-oI-Ser"/>
