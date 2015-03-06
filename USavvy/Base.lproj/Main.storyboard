@@ -377,7 +377,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$85" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1g-nF-IjV">
                                                         <rect key="frame" x="8" y="4" width="42" height="21"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" red="1" green="0.99578643850000004" blue="0.98547867580000004" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -408,7 +408,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="420" id="D7N-DA-qDI"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <color key="textColor" red="0.89342645202020199" green="0.56868007995515946" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -451,10 +451,10 @@
                                             <blurEffect style="extraLight"/>
                                         </visualEffectView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jony-profile" translatesAutoresizingMaskIntoConstraints="NO" id="6Lk-vu-TqQ">
-                                            <rect key="frame" x="512" y="195" width="80" height="80"/>
+                                            <rect key="frame" x="492" y="175" width="100" height="100"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="AHF-Qa-b8M"/>
-                                                <constraint firstAttribute="height" constant="80" id="VYV-sg-I6Q"/>
+                                                <constraint firstAttribute="width" constant="100" id="8Ei-7L-k62"/>
+                                                <constraint firstAttribute="height" constant="100" id="qxQ-eB-dde"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ath-dg-QP4">
@@ -472,15 +472,15 @@
                                     <constraints>
                                         <constraint firstItem="skx-fe-kHr" firstAttribute="top" secondItem="tfS-Oa-cBA" secondAttribute="bottom" constant="15" id="0fN-Gb-vFs"/>
                                         <constraint firstItem="fq8-bW-Hxd" firstAttribute="centerY" secondItem="37f-cq-3Eg" secondAttribute="centerY" id="5CW-mC-N44"/>
+                                        <constraint firstItem="6Lk-vu-TqQ" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="Ey0-1z-Kt1"/>
                                         <constraint firstAttribute="trailing" secondItem="fq8-bW-Hxd" secondAttribute="trailing" id="P5Z-eW-7cD"/>
                                         <constraint firstItem="fq8-bW-Hxd" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leading" id="SPN-jC-zLi"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="6Lk-vu-TqQ" secondAttribute="bottom" constant="36.5" id="ZlH-Fk-UJ5"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6Lk-vu-TqQ" secondAttribute="bottom" constant="37" id="Snl-cs-hEJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="skx-fe-kHr" secondAttribute="bottom" constant="-9.5" id="adN-2c-QCR"/>
                                         <constraint firstItem="skx-fe-kHr" firstAttribute="trailing" secondItem="fq8-bW-Hxd" secondAttribute="trailing" id="d44-16-58F"/>
                                         <constraint firstItem="skx-fe-kHr" firstAttribute="leading" secondItem="fq8-bW-Hxd" secondAttribute="leading" id="im2-wL-2cI"/>
                                         <constraint firstItem="fq8-bW-Hxd" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="top" id="lEQ-9N-VhO"/>
                                         <constraint firstItem="tfS-Oa-cBA" firstAttribute="leading" secondItem="skx-fe-kHr" secondAttribute="leading" id="sKh-Y0-ir0"/>
-                                        <constraint firstItem="6Lk-vu-TqQ" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="xQn-hx-Mva"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
