@@ -2,8 +2,8 @@
 //  ProfileViewController.swift
 //  USavvy
 //
-//  Created by Max Harris on 11/24/14.
-//  Copyright (c) 2014 Max Harris. All rights reserved.
+//  Created by Max Harris.
+//  Copyright (c) 2015 Max Harris. All rights reserved.
 //
 
 import UIKit
@@ -150,6 +150,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshUserInfo()
+    }
+    
+    func refreshUserInfo() {
         self.emailLabel.text = user.email
         // making API calls each time I think. Could be stored in a user object to make better
         
@@ -174,8 +178,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 }
             }
         }
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

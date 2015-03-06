@@ -10,6 +10,10 @@ import UIKit
 
 class MasterViewController: UITableViewController, HostFormViewControllerDelegate, ProfileViewControllerDelegate {
 
+    @IBOutlet weak var profileButton: UIBarButtonItem!
+    @IBAction func favoritedPressed(sender: UIButton) {
+        sender.selected = !sender.selected
+    }
     var detailViewController: DetailViewController? = nil
     var postings = NSMutableArray()
 
@@ -168,7 +172,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postings.count
     }
@@ -180,8 +184,11 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         
         cell.backgroundImageView.image  = posting.picture
         cell.titleLabel.text = posting.title
-        cell.hoursLabel.text = "\(posting.numHours) hour(s) :"
-        cell.guestsLabel.text = "\(posting.numGuests) guest(s)"
+        if posting.numHours.toInt() == 1 { cell.hoursLabel.text = "\(posting.numHours) hr:"}
+        else { cell.hoursLabel.text = "\(posting.numHours) hrs:"}
+        if posting.numGuests.toInt() == 1 { cell.guestsLabel.text = "\(posting.numGuests) guest"}
+        else {cell.guestsLabel.text = "\(posting.numGuests) guests"}
+        
         
         // setting profile image programmatically
         cell.profileImageView.image = posting.profPic
@@ -205,6 +212,10 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UIScreen.mainScreen().bounds.width
     }
     
     func userDidFinishUpdatingProfile() {
