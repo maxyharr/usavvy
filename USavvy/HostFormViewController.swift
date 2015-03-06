@@ -155,7 +155,6 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                 var parsePosting = PFObject(className:"Posting")
                 parsePosting["title"] = self.titleField.text
                 parsePosting["numGuests"] = self.guestsField.text
-                parsePosting["numHours"] = self.hoursField.text
                 parsePosting["description"] = self.descriptionTextView.text
                 
                 // set postings image to image created above
@@ -182,7 +181,7 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                             
                             
                             // Finally create an object to return to the Postings array in the Master
-                            let posting = Posting(title: self.titleField.text, numGuests: self.guestsField.text, numHours: self.hoursField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
+                            let posting = Posting(title: self.titleField.text, numGuests: self.guestsField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
                             self.delegate!.didFinishCreatingPosting(posting)
                             self.navigationController?.popViewControllerAnimated(true)
                         }

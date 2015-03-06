@@ -48,7 +48,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                     self.postings.removeAllObjects()
                     for parsePosting in postingsTemp {
                         let title = parsePosting["title"]! as String
-                        let numHours = parsePosting["numHours"]! as String
                         let numGuests = parsePosting["numGuests"]! as String
                         let description = parsePosting["description"]! as String
                         let imageFile = parsePosting["experiencePhoto"]! as PFFile
@@ -81,7 +80,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                                                 profPic = image
                                                 
                                                 // create a posting object
-                                                let posting = Posting(title: title, numGuests: numGuests, numHours: numHours, description: description, picture: backgroundPhoto!, profPic: profPic!)
+                                                let posting = Posting(title: title, numGuests: numGuests, description: description, picture: backgroundPhoto!, profPic: profPic!)
                                                 
                                                 self.postings.insertObject(posting, atIndex: 0)
                                                 self.tableView.reloadData()
@@ -199,8 +198,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         let cellWidth = UIScreen.mainScreen().bounds.width
         cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
         cell.titleLabel.text = posting.title
-        if posting.numHours.toInt() == 1 { cell.hoursLabel.text = "\(posting.numHours) hr:"}
-        else { cell.hoursLabel.text = "\(posting.numHours) hrs:"}
         if posting.numGuests.toInt() == 1 { cell.guestsLabel.text = "\(posting.numGuests) guest"}
         else {cell.guestsLabel.text = "\(posting.numGuests) guests"}
         

@@ -6,15 +6,19 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>7674AB7B-6F4E-474A-9175-DFB48439877E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>USavvy</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>E9ECCB23907FED78CB4BA3FBA82A3BEFC4CDC252</key>
 		<string>https://github.com/mharris7190/usavvy.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>USavvy.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>E9ECCB23907FED78CB4BA3FBA82A3BEFC4CDC252</key>
-		<string>USavvy/</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/mharris7190/usavvy.git</string>
@@ -30,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>E9ECCB23907FED78CB4BA3FBA82A3BEFC4CDC252</string>
 			<key>IDESourceControlWCCName</key>
-			<string>USavvy</string>
+			<string>usavvy</string>
 		</dict>
 	</array>
 </dict>
