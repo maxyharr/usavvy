@@ -19,7 +19,8 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
 
     // callback from HostFromViewControllerDelegate when user finishes creating a posting
     func didFinishCreatingPosting(posting: Posting) {
-        postings.insertObject(posting, atIndex: 0)
+        postings.addObject(posting)
+        //postings.insertObject(posting, atIndex: 0)
         self.tableView.reloadData()
     }
     
@@ -48,7 +49,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                     self.postings.removeAllObjects()
                     for parsePosting in postingsTemp {
                         let title = parsePosting["title"]! as String
-                        let numGuests = parsePosting["numGuests"]! as String
                         let description = parsePosting["description"]! as String
                         let imageFile = parsePosting["experiencePhoto"]! as PFFile
                         
@@ -80,9 +80,10 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                                                 profPic = image
                                                 
                                                 // create a posting object
-                                                let posting = Posting(title: title, numGuests: numGuests, description: description, picture: backgroundPhoto!, profPic: profPic!)
+                                                let posting = Posting(title: title,description: description, picture: backgroundPhoto!, profPic: profPic!)
                                                 
-                                                self.postings.insertObject(posting, atIndex: 0)
+                                                //self.postings.insertObject(posting, atIndex: 0)
+                                                self.postings.addObject(posting)
                                                 self.tableView.reloadData()
                                             } else {
                                                 println("didn't find profPicImage")
@@ -198,8 +199,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         let cellWidth = UIScreen.mainScreen().bounds.width
         cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
         cell.titleLabel.text = posting.title
-        if posting.numGuests.toInt() == 1 { cell.guestsLabel.text = "\(posting.numGuests) guest"}
-        else {cell.guestsLabel.text = "\(posting.numGuests) guests"}
         
         // setting profile image programmatically
         cell.profileImageView.image = imageCropper.squareImageWithImage(posting.profPic, newSize: CGSizeMake(80, 80))

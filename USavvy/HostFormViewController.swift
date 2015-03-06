@@ -115,18 +115,6 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
             alert.message = "Please give the posting a title"
             alert.addButtonWithTitle("Ok")
             alert.show()
-        } else if (self.guestsField.text.isEmpty) {
-            let alert = UIAlertView()
-            alert.title = "Guests"
-            alert.message = "Please specify a number of guests"
-            alert.addButtonWithTitle("Ok")
-            alert.show()
-        } else if (self.hoursField.text.isEmpty) {
-            let alert = UIAlertView()
-            alert.title = "Hours"
-            alert.message = "Please specify how long the experience lasts"
-            alert.addButtonWithTitle("Ok")
-            alert.show()
         } else if (self.descriptionTextView.text.isEmpty){
             let alert = UIAlertView()
             alert.title = "Description"
@@ -154,7 +142,6 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                 // create Posting object in Parse
                 var parsePosting = PFObject(className:"Posting")
                 parsePosting["title"] = self.titleField.text
-                parsePosting["numGuests"] = self.guestsField.text
                 parsePosting["description"] = self.descriptionTextView.text
                 
                 // set postings image to image created above
@@ -181,7 +168,7 @@ class HostFormViewController: UIViewController, UINavigationControllerDelegate, 
                             
                             
                             // Finally create an object to return to the Postings array in the Master
-                            let posting = Posting(title: self.titleField.text, numGuests: self.guestsField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
+                            let posting = Posting(title: self.titleField.text, description: self.descriptionTextView.text, picture: self.experienceImageView.image!, profPic: profPicImage!)
                             self.delegate!.didFinishCreatingPosting(posting)
                             self.navigationController?.popViewControllerAnimated(true)
                         }
