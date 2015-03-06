@@ -108,6 +108,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
@@ -171,18 +172,29 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
 
     // MARK: - Table View
 
+    // CUSTOM SEPARATOR
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (section > 0) { return UIScreen.mainScreen().bounds.width * 0.0625 } //0.0625
+        else { return 0 }
+    }
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headerView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 30))
+        headerView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        return headerView
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return postings.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postings.count
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let posting = postings[indexPath.row] as Posting
+        let posting = postings[indexPath.section] as Posting
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PostingTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("experienceCell", forIndexPath: indexPath) as PostingTableViewCell
         let imageCropper = ImageCropper()
         let cellWidth = UIScreen.mainScreen().bounds.width
         cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
@@ -192,13 +204,21 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         if posting.numGuests.toInt() == 1 { cell.guestsLabel.text = "\(posting.numGuests) guest"}
         else {cell.guestsLabel.text = "\(posting.numGuests) guests"}
         
-        
         // setting profile image programmatically
         cell.profileImageView.image = imageCropper.squareImageWithImage(posting.profPic, newSize: CGSizeMake(80, 80))
         cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.width/2 // to make it a circle
         cell.profileImageView.clipsToBounds = true
         cell.profileImageView.layer.borderWidth = 3
         cell.profileImageView.layer.borderColor = UIColor.orangeColor().CGColor
+        
+        var bottomLineView = UIView(frame: CGRectMake(0, cell.contentView.frame.size.height - 1, cell.contentView.frame.size.width, 1))
+        var topLineView = UIView(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, 1))
+        
+        bottomLineView.backgroundColor = UIColor.darkGrayColor()
+        topLineView.backgroundColor = UIColor.darkGrayColor()
+        
+        cell.contentView.addSubview(bottomLineView)
+        cell.contentView.addSubview(topLineView)
         
         return cell
     }
