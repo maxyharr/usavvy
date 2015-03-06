@@ -114,6 +114,8 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         }
         
         refreshPostings()
+        let user = PFUser.currentUser()
+        self.profileButton.title = user["firstName"] as? String
     }
 
     override func didReceiveMemoryWarning() {
@@ -181,8 +183,9 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         let posting = postings[indexPath.row] as Posting
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PostingTableViewCell
-        
-        cell.backgroundImageView.image  = posting.picture
+        let imageCropper = ImageCropper()
+        let cellWidth = UIScreen.mainScreen().bounds.width
+        cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
         cell.titleLabel.text = posting.title
         if posting.numHours.toInt() == 1 { cell.hoursLabel.text = "\(posting.numHours) hr:"}
         else { cell.hoursLabel.text = "\(posting.numHours) hrs:"}
@@ -191,8 +194,8 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         
         
         // setting profile image programmatically
-        cell.profileImageView.image = posting.profPic
-        cell.profileImageView.layer.cornerRadius = 38 // 38 because width and height are 76 (76/2)
+        cell.profileImageView.image = imageCropper.squareImageWithImage(posting.profPic, newSize: CGSizeMake(80, 80))
+        cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.width/2 // to make it a circle
         cell.profileImageView.clipsToBounds = true
         cell.profileImageView.layer.borderWidth = 3
         cell.profileImageView.layer.borderColor = UIColor.orangeColor().CGColor
@@ -203,15 +206,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
-    }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            postings.removeObjectAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

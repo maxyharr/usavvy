@@ -70,12 +70,16 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         println("finished picking image")
-        picker .dismissViewControllerAnimated(true, completion: nil)
+        picker.dismissViewControllerAnimated(true, completion: nil)
         
-        self.profileImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
         //sets the selected image to image view
-        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let imageCropper = ImageCropper()
+            let imageWidth = self.profileImageView.frame.width
+            self.profileImageView.image = imageCropper.squareImageWithImage(image, newSize: CGSizeMake(imageWidth, imageWidth))
+            self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        }
     }
 
     func imagePickerControllerDidCancel(picker: UIImagePickerController!) {

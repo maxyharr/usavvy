@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50359EA11AA90DD7008B2AAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50359EA01AA90DD7008B2AAD /* User.swift */; };
+		50359EA31AA94BA8008B2AAD /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50359EA21AA94BA8008B2AAD /* ImageCropper.swift */; };
 		E183DE5F1A1FF2E400CB0455 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE5E1A1FF2E400CB0455 /* AppDelegate.swift */; };
 		E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE601A1FF2E400CB0455 /* MasterViewController.swift */; };
 		E183DE631A1FF2E400CB0455 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE621A1FF2E400CB0455 /* DetailViewController.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		50359EA01AA90DD7008B2AAD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		50359EA21AA94BA8008B2AAD /* ImageCropper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
 		E183DE591A1FF2E400CB0455 /* USavvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USavvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E183DE5D1A1FF2E400CB0455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E183DE5E1A1FF2E400CB0455 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				E183DE691A1FF2E400CB0455 /* LaunchScreen.xib */,
 				E183DE5C1A1FF2E400CB0455 /* Supporting Files */,
 				50359EA01AA90DD7008B2AAD /* User.swift */,
+				50359EA21AA94BA8008B2AAD /* ImageCropper.swift */,
 			);
 			path = USavvy;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				E1A24C781A2375D400DDB426 /* ProfileViewController.swift in Sources */,
 				E183DE5F1A1FF2E400CB0455 /* AppDelegate.swift in Sources */,
 				50359EA11AA90DD7008B2AAD /* User.swift in Sources */,
+				50359EA31AA94BA8008B2AAD /* ImageCropper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
