@@ -14,6 +14,8 @@ class PostingTableViewCell: UITableViewCell {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var hostNameLabel: UILabel!
+    @IBOutlet weak var costLabel: UILabel!
+    @IBOutlet weak var spotsLabel: UILabel!
    
     override func awakeFromNib() {
         super.awakeFromNib()

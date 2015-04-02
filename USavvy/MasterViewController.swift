@@ -15,7 +15,11 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         sender.selected = !sender.selected
     }
     var detailViewController: DetailViewController? = nil
+    
+    // Holds array of IOS Posting Objects to show on the screen
     var postings = NSMutableArray()
+    
+    
 
     // callback from HostFromViewControllerDelegate when user finishes creating a posting
     func didFinishCreatingPosting(posting: Posting) {
@@ -63,9 +67,13 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                 if postingsTemp.count > 0 {
                     self.postings.removeAllObjects()
                     for parsePosting in postingsTemp {
+                        
+                        // GRAB DATA OUT OF THE PARSE POSTING
                         let title = parsePosting["title"]! as String
                         let description = parsePosting["description"]! as String
                         let imageFile = parsePosting["experiencePhoto"]! as PFFile
+                        let cost = parsePosting["cost"] as String
+                        let availableSpots = parsePosting["availableSpots"] as String
                         
                         var backgroundPhoto:UIImage? = nil
                         
@@ -102,7 +110,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                                                 
                                                 
                                                 // create a posting object
-                                                let posting = Posting(title: title,description: description, picture: backgroundPhoto!, profPic: profPic!, host: host)
+                                                let posting = Posting(title: title,description: description, cost: cost, availableSpots: availableSpots, picture: backgroundPhoto!, profPic: profPic!, host: host)
                                                 
                                                 //self.postings.insertObject(posting, atIndex: 0)
                                                 self.postings.addObject(posting)
@@ -209,6 +217,12 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
         cell.titleLabel.text = posting.title
         cell.hostNameLabel.text = posting.host.name
+        
+        // Display cost as "Free" if 0
+        if (posting.cost.toInt() == 0) { cell.costLabel.text = "Free" }
+        else { cell.costLabel.text = "$" + posting.cost }
+        
+        cell.spotsLabel.text = posting.availableSpots + " spots left"
         
         
         // setting profile image programmatically

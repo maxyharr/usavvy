@@ -478,9 +478,9 @@
                                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 spots left" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mh2-dd-aJ8">
-                                                        <rect key="frame" x="125" y="28" width="92" height="21"/>
+                                                        <rect key="frame" x="113" y="28" width="104" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="92" id="gu2-Eb-y4E"/>
+                                                            <constraint firstAttribute="width" constant="104" id="64G-oi-0og"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -491,15 +491,15 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="MgH-k4-ool" firstAttribute="top" secondItem="Jrf-pf-VIS" secondAttribute="top" constant="28" id="0AP-B7-eLc"/>
-                                                    <constraint firstItem="MgH-k4-ool" firstAttribute="top" secondItem="Mh2-dd-aJ8" secondAttribute="top" id="2wT-fi-rb3"/>
+                                                    <constraint firstItem="Mh2-dd-aJ8" firstAttribute="top" secondItem="MgH-k4-ool" secondAttribute="top" id="9lI-x4-3F1"/>
                                                     <constraint firstAttribute="trailing" secondItem="MgH-k4-ool" secondAttribute="trailing" constant="90" id="MYg-RQ-KdR"/>
-                                                    <constraint firstItem="Mh2-dd-aJ8" firstAttribute="leading" secondItem="Jrf-pf-VIS" secondAttribute="leading" constant="125" id="O1u-KR-G90"/>
-                                                    <constraint firstItem="MgH-k4-ool" firstAttribute="bottom" secondItem="Mh2-dd-aJ8" secondAttribute="bottom" id="Y4j-Bs-VH2"/>
+                                                    <constraint firstItem="Mh2-dd-aJ8" firstAttribute="bottom" secondItem="MgH-k4-ool" secondAttribute="bottom" id="aYk-tC-kfC"/>
                                                     <constraint firstAttribute="bottom" secondItem="bkw-Fw-1ZK" secondAttribute="bottom" constant="23" id="fEs-FB-P93"/>
                                                     <constraint firstAttribute="bottom" secondItem="MgH-k4-ool" secondAttribute="bottom" constant="3" id="oHn-HX-EaK"/>
                                                     <constraint firstItem="bkw-Fw-1ZK" firstAttribute="top" secondItem="Jrf-pf-VIS" secondAttribute="topMargin" id="spk-YL-4e3"/>
-                                                    <constraint firstItem="Mh2-dd-aJ8" firstAttribute="trailing" secondItem="Jrf-pf-VIS" secondAttribute="trailingMargin" id="tCY-ek-rx9"/>
+                                                    <constraint firstItem="Mh2-dd-aJ8" firstAttribute="leading" secondItem="Jrf-pf-VIS" secondAttribute="leading" constant="113" id="t5F-nO-Ccb"/>
                                                     <constraint firstItem="bkw-Fw-1ZK" firstAttribute="leading" secondItem="Jrf-pf-VIS" secondAttribute="leadingMargin" id="uIA-oE-Jip"/>
+                                                    <constraint firstItem="Mh2-dd-aJ8" firstAttribute="trailing" secondItem="Jrf-pf-VIS" secondAttribute="trailingMargin" id="wCt-Fj-eFE"/>
                                                     <constraint firstItem="MgH-k4-ool" firstAttribute="leading" secondItem="bkw-Fw-1ZK" secondAttribute="leading" id="xuj-M0-dMU"/>
                                                 </constraints>
                                             </view>
@@ -532,8 +532,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="backgroundImageView" destination="fq8-bW-Hxd" id="wKo-4R-FqT"/>
+                                    <outlet property="costLabel" destination="i1g-nF-IjV" id="I3b-0F-BFh"/>
                                     <outlet property="hostNameLabel" destination="AlB-H5-ZJF" id="Qjm-TJ-u91"/>
                                     <outlet property="profileImageView" destination="6Lk-vu-TqQ" id="fgu-e5-gH0"/>
+                                    <outlet property="spotsLabel" destination="Mh2-dd-aJ8" id="76A-BX-TIk"/>
                                     <outlet property="titleLabel" destination="K0x-uf-mV9" id="24Y-Xo-V6H"/>
                                     <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
                                 </connections>
