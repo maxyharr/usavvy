@@ -15,4 +15,31 @@ class MHTimeDisplay {
         let dateString = dateFormat.stringFromDate(date)
         return dateString
     }
+    
+    class func dateSimple(startTime: NSDate) -> String {
+        var dateFormat = NSDateFormatter()
+        dateFormat.dateFormat = "EEEE, MMMM d"
+        let dateString = dateFormat.stringFromDate(startTime)
+        return dateString
+    }
+    
+    class func startToEnd(startTime: NSDate, endTime: NSDate) -> String {
+        var dateFormat = NSDateFormatter()
+        
+        // start time
+        dateFormat.dateFormat = "h:mm a"
+        let startString = dateFormat.stringFromDate(startTime)
+        
+        
+        // end time
+        dateFormat.dateFormat = "h:mm a"
+        let endString = dateFormat.stringFromDate(endTime)
+        
+        
+        // combine them
+        let startEndString = startString + " - " + endString
+        
+        
+        return startEndString
+    }
 }

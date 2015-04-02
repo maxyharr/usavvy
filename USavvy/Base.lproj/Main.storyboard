@@ -533,9 +533,11 @@
                                 <connections>
                                     <outlet property="backgroundImageView" destination="fq8-bW-Hxd" id="wKo-4R-FqT"/>
                                     <outlet property="costLabel" destination="i1g-nF-IjV" id="I3b-0F-BFh"/>
+                                    <outlet property="dateLabel" destination="bkw-Fw-1ZK" id="Dy4-hi-Lxx"/>
                                     <outlet property="hostNameLabel" destination="AlB-H5-ZJF" id="Qjm-TJ-u91"/>
                                     <outlet property="profileImageView" destination="6Lk-vu-TqQ" id="fgu-e5-gH0"/>
                                     <outlet property="spotsLabel" destination="Mh2-dd-aJ8" id="76A-BX-TIk"/>
+                                    <outlet property="startEndTimeLabel" destination="MgH-k4-ool" id="VOP-7E-3Jk"/>
                                     <outlet property="titleLabel" destination="K0x-uf-mV9" id="24Y-Xo-V6H"/>
                                     <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
                                 </connections>

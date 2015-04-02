@@ -19,7 +19,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
     // Holds array of IOS Posting Objects to show on the screen
     var postings = NSMutableArray()
     
-    
 
     // callback from HostFromViewControllerDelegate when user finishes creating a posting
     func didFinishCreatingPosting(posting: Posting) {
@@ -74,6 +73,8 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                         let imageFile = parsePosting["experiencePhoto"]! as PFFile
                         let cost = parsePosting["cost"] as String
                         let availableSpots = parsePosting["availableSpots"] as String
+                        let startTime = parsePosting["startTime"] as NSDate
+                        let endTime = parsePosting["endTime"] as NSDate
                         
                         var backgroundPhoto:UIImage? = nil
                         
@@ -110,7 +111,7 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                                                 
                                                 
                                                 // create a posting object
-                                                let posting = Posting(title: title,description: description, cost: cost, availableSpots: availableSpots, picture: backgroundPhoto!, profPic: profPic!, host: host)
+                                                let posting = Posting(title: title,description: description, cost: cost, availableSpots: availableSpots, startTime: startTime, endTime: endTime, picture: backgroundPhoto!, profPic: profPic!, host: host)
                                                 
                                                 //self.postings.insertObject(posting, atIndex: 0)
                                                 self.postings.addObject(posting)
@@ -223,6 +224,10 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         else { cell.costLabel.text = "$" + posting.cost }
         
         cell.spotsLabel.text = posting.availableSpots + " spots left"
+        
+        cell.dateLabel.text = MHTimeDisplay.dateSimple(posting.startTime)
+        cell.startEndTimeLabel.text = MHTimeDisplay.startToEnd(posting.startTime, endTime: posting.endTime)
+        
         
         
         // setting profile image programmatically

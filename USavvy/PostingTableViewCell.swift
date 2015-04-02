@@ -16,6 +16,8 @@ class PostingTableViewCell: UITableViewCell {
     @IBOutlet weak var hostNameLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     @IBOutlet weak var spotsLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var startEndTimeLabel: UILabel!
    
     override func awakeFromNib() {
         super.awakeFromNib()
