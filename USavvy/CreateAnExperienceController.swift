@@ -157,10 +157,7 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
             // Prepare the background image for uploading
             let imageData: NSData = UIImageJPEGRepresentation(self.uploadPictureButton.backgroundImageForState(UIControlState.Normal), 0.9)
             let imageFile: PFFile = PFFile(name:"\(self.titleField.text).png", data:imageData)
-            
-            
-            // Upload other form of picture for some reason or else it can't find it when pulling it down
-            
+        
             
             
             // Create a Posting Object in Parse
@@ -175,23 +172,64 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
             posting["cost"] = self.costField.text
             posting["location"] = self.locationField.text
             posting["user"] = user
-            posting.saveInBackgroundWithBlock(nil)
-            
-            UIApplication.sharedApplication().endIgnoringInteractionEvents()
             
             
             
             
-            
-            
-            
-            // ###################################################################
-            // ########             CREATE POSTING OBJECT - IOS          #########
-            // ###################################################################
-        
-            //let retPosting = Posting(pfPosting: posting)
-            //self.delegate!.didFinishCreatingPosting(retPosting)
-            self.navigationController?.popViewControllerAnimated(true)
+            // create the spinner
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
+            posting.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError!) -> Void in
+                print("Current Thread in saveInBackground: ")
+                println( NSThread.currentThread() )
+                
+                
+                // Display spinner
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.view.addSubview(spinner)
+                    spinner.startAnimating()
+                    
+                    print("Current Thread in dispatch_get_main_queue: ")
+                    println( NSThread.currentThread() )
+
+                }
+                
+                
+                // Remove Spinner
+                dispatch_async(dispatch_get_main_queue()) {
+                    spinner.stopAnimating()
+                }
+                
+                
+                // Reenable Functionalility
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
+                
+                // ###################################################################
+                // ########             CREATE POSTING OBJECT - IOS          #########
+                // ###################################################################
+                
+                //let retPosting = Posting(pfPosting: posting)
+                //self.delegate!.didFinishCreatingPosting(retPosting)
+                
+                
+                // Check for errors
+                if (success) {
+                    println("The object has been saved.")
+                } else {
+                    println("There was a problem, check error.description")
+                    println(error.description)
+                    
+                    let alert = UIAlertView()
+                    alert.title = "Error"
+                    alert.message = "Your posting could not be saved. Please try again."
+                    alert.addButtonWithTitle("Ok")
+                    alert.show()
+                }
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            }
         }
     }
     
