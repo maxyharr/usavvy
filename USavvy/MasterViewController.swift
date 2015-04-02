@@ -32,6 +32,19 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        if let split = self.splitViewController {
+            let controllers = split.viewControllers
+            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
+        }
+        
+        refreshPostings()
+        let user = PFUser.currentUser()
+        self.profileButton.title = user["firstName"] as? String
+    }
+    
     override func viewDidAppear(animated: Bool) {
         // make sure to pull in new data when view loads (only for now, want to require action (pull down) that updates the postings data)
         
@@ -113,19 +126,6 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
                 println("Couldn't retrieve postings %@", error)
             }
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-        }
-        
-        refreshPostings()
-        let user = PFUser.currentUser()
-        self.profileButton.title = user["firstName"] as? String
     }
 
     override func didReceiveMemoryWarning() {
