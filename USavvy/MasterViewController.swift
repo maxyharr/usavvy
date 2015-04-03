@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController, HostFormViewControllerDelegate, ProfileViewControllerDelegate {
+class MasterViewController: UITableViewController, CreateAnExperienceDelegate, ProfileViewControllerDelegate {
 
     @IBOutlet weak var profileButton: UIBarButtonItem!
     @IBAction func favoritedPressed(sender: UIButton) {
@@ -167,19 +167,21 @@ class MasterViewController: UITableViewController, HostFormViewControllerDelegat
         // User wants to show the posting details for a specific one
         if segue.identifier == "showDetail" {
             
-            if let indexPath = sender as? NSIndexPath {
+            // DVC - Destination View Controller
+            if let indexPath = tableView.indexPathForCell(sender as PostingTableViewCell) {
+                println("transitioning to detail page")
                 let posting = postings[indexPath.row] as Posting
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
-//                controller.detailItem = posting
-//                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-//                controller.navigationItem.leftItemsSupplementBackButton = true
+                let DVC = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
+                DVC.detailItem = posting
+                DVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                DVC.navigationItem.leftItemsSupplementBackButton = true
             }
         }
         
         // User wants to create a new posting
-        else if segue.identifier == "pushHostFormSegue" {
-            let hostFormViewController:HostFormViewController = segue.destinationViewController as HostFormViewController
-            hostFormViewController.delegate = self
+        else if segue.identifier == "createAnExperienceSegue" {
+            let createAnExperienceController:CreateAnExperienceController = segue.destinationViewController as CreateAnExperienceController
+            createAnExperienceController.delegate = self
         }
         
         else if segue.identifier == "profileSegue" {

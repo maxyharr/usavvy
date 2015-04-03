@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
         didSet {
             // Update the view.
             self.configureView()
+            self.title = detailItem?.title
         }
     }
 
@@ -31,8 +32,6 @@ class DetailViewController: UIViewController {
 //                label.text = detail.description
 //            }
 //        }
-        
-        
     }
     
     

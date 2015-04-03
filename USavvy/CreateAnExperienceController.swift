@@ -155,7 +155,8 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
             // ###################################################################
             
             // Prepare the background image for uploading
-            let imageData: NSData = UIImageJPEGRepresentation(self.uploadPictureButton.backgroundImageForState(UIControlState.Normal), 0.9)
+            let image: UIImage = self.uploadPictureButton.backgroundImageForState(UIControlState.Normal)!
+            let imageData: NSData = UIImageJPEGRepresentation(image, 0.9)
             let imageFile: PFFile = PFFile(name:"\(self.titleField.text).png", data:imageData)
         
             
@@ -217,6 +218,27 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
                 // Check for errors
                 if (success) {
                     println("The object has been saved.")
+                    
+                    if let userImageFile = user["profilePicture"] as? PFFile {
+                        userImageFile.getDataInBackgroundWithBlock {
+                            (imageData: NSData!, error: NSError!) -> Void in
+                            if error == nil {
+                                
+                                let profPicImage = UIImage(data:imageData)
+                                let hostFirstName = user["firstName"] as String
+                                let hostLastName = user["lastName"] as String
+                                let hostEmail = user["email"] as String
+                                let hostDescription = user["personalDescription"] as String
+                                
+                                let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: profPicImage!)
+                                
+                                let posting = Posting(title: posting["title"] as String, description: posting["description"] as String, cost: posting["cost"] as String, availableSpots: posting["availableSpots"] as String, startTime: posting["startTime"] as NSDate, endTime: posting["endTime"] as NSDate, picture: image, profPic: profPicImage!, host: host)
+                                
+                                self.delegate!.didFinishCreatingPosting(posting)
+                            }
+                        }
+                    }
+                    
                 } else {
                     println("There was a problem, check error.description")
                     println(error.description)
