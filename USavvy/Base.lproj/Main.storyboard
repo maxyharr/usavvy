@@ -868,8 +868,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="i0V-Lh-eRQ">
-                                                    <rect key="frame" x="8" y="8" width="584" height="142"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0V-Lh-eRQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -878,6 +878,12 @@
                                                     </connections>
                                                 </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="i0V-Lh-eRQ" secondAttribute="bottom" constant="-8.5" id="9Yw-5J-boL"/>
+                                                <constraint firstItem="i0V-Lh-eRQ" firstAttribute="leading" secondItem="ccT-OO-hSI" secondAttribute="leading" id="KXm-w7-F94"/>
+                                                <constraint firstItem="i0V-Lh-eRQ" firstAttribute="top" secondItem="ccT-OO-hSI" secondAttribute="top" id="Pmq-ud-jHo"/>
+                                                <constraint firstAttribute="trailing" secondItem="i0V-Lh-eRQ" secondAttribute="trailing" id="aMw-aU-5A4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
