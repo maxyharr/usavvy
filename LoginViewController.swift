@@ -29,13 +29,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         println(error.localizedFailureReason)
                         // The login failed. Check error to see why.
+                        let alert = UIAlertView()
+                        alert.title = "Error"
+                        alert.message = "Could not log you in. Please try again."
+                        alert.addButtonWithTitle("Ok")
+                        alert.show()
                     }
                 }
-            } else {
-                println("didn't provide password")
             }
-        } else {
-            println("didn't provide email")
         }
     }
     
