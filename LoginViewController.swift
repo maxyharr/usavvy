@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if user != nil {
                         println("Signing in \(PFUser.currentUser().email) succeeded")
                         // Do stuff after successful login
-                        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+                        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                         delegate.setUpRootViewController(true, animated: true, alert: false)
                     } else {
                         println(error.localizedFailureReason)
@@ -49,12 +49,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     user.email = emailSignUpField.text
                     user.password = passwordSignUpField.text
                     user.signUpInBackgroundWithBlock {
-                        (succeeded: Bool!, error: NSError!) -> Void in
+                        (succeeded: Bool, error: NSError!) -> Void in
                         if error == nil {
                             // Hooray! Let them use the app now.
                             println("Signing up succeeded")
                             //self.dismissViewControllerAnimated(true, completion: nil)
-                            let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+                            let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             delegate.setUpRootViewController(true, animated: true, alert: false)
                         } else {
                             println("Signing up failed")
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // No Delegate needed -- removes keyboard when screen is touched outside of keyboard
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
     

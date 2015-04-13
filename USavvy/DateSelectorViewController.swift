@@ -14,6 +14,8 @@ protocol DateSelectorDelegate {
 class DateSelectorViewController: UIViewController {
     var delegate:DateSelectorDelegate?
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
     var cameFrom = ""
     
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -30,6 +32,8 @@ class DateSelectorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if cameFrom == "start" { titleLabel.text == "Start Time" }
+        else { titleLabel.text == "End Time" }
     }
 
     override func didReceiveMemoryWarning() {

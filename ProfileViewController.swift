@@ -82,7 +82,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
 
-    func imagePickerControllerDidCancel(picker: UIImagePickerController!) {
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
         println("picker cancel.")
     }
@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             
             user["profilePicture"] = imageFile
             user.saveInBackgroundWithBlock {
-                (success: Bool!, error: NSError!) -> Void in
+                (success: Bool, error: NSError!) -> Void in
                 if error == nil {
                     println("Successfully saved the changes!")
                     let alert = UIAlertView()
@@ -148,7 +148,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBAction func logOutUser(sender: AnyObject) {
         PFUser.logOut()
         
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         delegate.setUpRootViewController(false, animated: false, alert: true)
         
     }
@@ -189,10 +189,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
-    
+        
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

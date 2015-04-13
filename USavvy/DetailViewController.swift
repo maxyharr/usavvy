@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
 
     @IBAction func logOutUser(sender: AnyObject) {
         PFUser.logOut()
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         delegate.setUpRootViewController(false, animated: false, alert: true)
     }
 

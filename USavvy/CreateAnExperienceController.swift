@@ -60,7 +60,7 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
         // Select Start Time
         if segue.identifier == "startTimePickerSegue" {
             
-            let DVC = segue.destinationViewController as DateSelectorViewController
+            let DVC = segue.destinationViewController as! DateSelectorViewController
             DVC.delegate = self
             DVC.cameFrom = "start"
         }
@@ -68,7 +68,7 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
             // Select End Time
         else if segue.identifier == "endTimePickerSegue" {
             
-            let DVC = segue.destinationViewController as DateSelectorViewController
+            let DVC = segue.destinationViewController as! DateSelectorViewController
             DVC.delegate = self
             DVC.cameFrom = "end"
         }
@@ -225,14 +225,14 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
                             if error == nil {
                                 
                                 let profPicImage = UIImage(data:imageData)
-                                let hostFirstName = user["firstName"] as String
-                                let hostLastName = user["lastName"] as String
-                                let hostEmail = user["email"] as String
-                                let hostDescription = user["personalDescription"] as String
+                                let hostFirstName = user["firstName"] as! String
+                                let hostLastName = user["lastName"] as! String
+                                let hostEmail = user["email"] as! String
+                                let hostDescription = user["personalDescription"] as! String
                                 
                                 let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: profPicImage!)
                                 
-                                let posting = Posting(title: posting["title"] as String, description: posting["description"] as String, cost: posting["cost"] as String, availableSpots: posting["availableSpots"] as String, startTime: posting["startTime"] as NSDate, endTime: posting["endTime"] as NSDate, picture: image, profPic: profPicImage!, host: host)
+                                let posting = Posting(title: posting["title"] as! String, description: posting["description"] as! String, cost: posting["cost"] as! String, availableSpots: posting["availableSpots"] as! String, startTime: posting["startTime"] as! NSDate, endTime: posting["endTime"] as! NSDate, picture: image, profPic: profPicImage!, host: host)
                                 
                                 self.delegate!.didFinishCreatingPosting(posting)
                             }
@@ -326,7 +326,7 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         let cellWidth = UIScreen.mainScreen().bounds.width
-        let image = imageCropper.squareImageWithImage(info[UIImagePickerControllerOriginalImage] as UIImage, newSize: CGSize(width: cellWidth, height: cellWidth))
+        let image = imageCropper.squareImageWithImage(info[UIImagePickerControllerOriginalImage] as! UIImage, newSize: CGSize(width: cellWidth, height: cellWidth))
         self.uploadPictureButton.setBackgroundImage(image, forState: UIControlState.Normal)
         self.experienceTableView.reloadData()
     }

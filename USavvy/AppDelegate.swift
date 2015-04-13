@@ -26,17 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             var transition: UIViewAnimationOptions
             
             if !loggedIn {
-                let loginVC = window.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("login") as LoginViewController
+                let loginVC = window.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("login") as! LoginViewController
                 newRootViewController = loginVC
                 transition = UIViewAnimationOptions.TransitionFlipFromLeft
             } else {
-                let splitViewController = window.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("SplitVC") as SplitViewController
-                let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
+                let splitViewController = window.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("SplitVC") as! SplitViewController
+                let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
                 navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
                 splitViewController.delegate = self
                 
-                let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
-                let controller = masterNavigationController.topViewController as MasterViewController
+                let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
+                let controller = masterNavigationController.topViewController as! MasterViewController
                 
                 newRootViewController = splitViewController
                 transition = UIViewAnimationOptions.TransitionFlipFromLeft

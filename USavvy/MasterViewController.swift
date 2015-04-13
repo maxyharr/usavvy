@@ -68,13 +68,13 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                     for parsePosting in postingsTemp {
                         
                         // GRAB DATA OUT OF THE PARSE POSTING
-                        let title = parsePosting["title"]! as String
-                        let description = parsePosting["description"]! as String
-                        let imageFile = parsePosting["experiencePhoto"]! as PFFile
-                        let cost = parsePosting["cost"] as String
-                        let availableSpots = parsePosting["availableSpots"] as String
-                        let startTime = parsePosting["startTime"] as NSDate
-                        let endTime = parsePosting["endTime"] as NSDate
+                        let title = parsePosting["title"]! as! String
+                        let description = parsePosting["description"]! as! String
+                        let imageFile = parsePosting["experiencePhoto"]! as! PFFile
+                        let cost = parsePosting["cost"] as! String
+                        let availableSpots = parsePosting["availableSpots"] as! String
+                        let startTime = parsePosting["startTime"] as! NSDate
+                        let endTime = parsePosting["endTime"] as! NSDate
                         
                         var backgroundPhoto:UIImage? = nil
                         
@@ -87,7 +87,7 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                                 println("loaded in background image in viewDidLoad")
                                 
                                 // get user from posting (so we can get the profpic)
-                                let parseUser = parsePosting["user"] as PFUser
+                                let parseUser = parsePosting["user"] as! PFUser
                                 let userid = parseUser.objectId as String!
                                 let query = PFUser.query()
                                 query.getObjectInBackgroundWithId(userid){
@@ -95,14 +95,14 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                                     if error == nil {
                                         // get user's profpic to store in iOS object
                                         var profPic:UIImage? = nil
-                                        let profileImageFile = retrievedUser["profilePicture"]! as PFFile
+                                        let profileImageFile = retrievedUser["profilePicture"]! as! PFFile
                                         profileImageFile.getDataInBackgroundWithBlock {
                                             (imageData: NSData!, error: NSError!) -> Void in
                                             if error == nil {
-                                                let hostFirstName = retrievedUser["firstName"] as String
-                                                let hostLastName = retrievedUser["lastName"] as String
-                                                let hostEmail = retrievedUser["email"] as String
-                                                let hostDescription = retrievedUser["personalDescription"] as String
+                                                let hostFirstName = retrievedUser["firstName"] as! String
+                                                let hostLastName = retrievedUser["lastName"] as! String
+                                                let hostEmail = retrievedUser["email"] as! String
+                                                let hostDescription = retrievedUser["personalDescription"] as! String
                                             
                                                 let image = UIImage(data:imageData)
                                                 profPic = image
@@ -168,10 +168,10 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         if segue.identifier == "showDetail" {
             
             // DVC - Destination View Controller
-            if let indexPath = tableView.indexPathForCell(sender as PostingTableViewCell) {
+            if let indexPath = tableView.indexPathForCell(sender as! PostingTableViewCell) {
                 println("transitioning to detail page")
-                let posting = postings[indexPath.row] as Posting
-                let DVC = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
+                let posting = postings[indexPath.row] as! Posting
+                let DVC = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 DVC.detailItem = posting
                 DVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 DVC.navigationItem.leftItemsSupplementBackButton = true
@@ -180,12 +180,12 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         
         // User wants to create a new posting
         else if segue.identifier == "createAnExperienceSegue" {
-            let createAnExperienceController:CreateAnExperienceController = segue.destinationViewController as CreateAnExperienceController
+            let createAnExperienceController:CreateAnExperienceController = segue.destinationViewController as! CreateAnExperienceController
             createAnExperienceController.delegate = self
         }
         
         else if segue.identifier == "profileSegue" {
-            let profileViewController:ProfileViewController = segue.destinationViewController as ProfileViewController
+            let profileViewController:ProfileViewController = segue.destinationViewController as! ProfileViewController
             profileViewController.delegate = self
         }
     }
@@ -212,9 +212,9 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let posting = postings[indexPath.section] as Posting
+        let posting = postings[indexPath.section] as! Posting
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("experienceCell", forIndexPath: indexPath) as PostingTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("experienceCell", forIndexPath: indexPath) as! PostingTableViewCell
         let imageCropper = ImageCropper()
         let cellWidth = UIScreen.mainScreen().bounds.width
         cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
