@@ -37,6 +37,7 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.contentInset = UIEdgeInsetsMake(-1, 0, 0, 0)
         self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -170,8 +171,11 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
             // DVC - Destination View Controller
             if let indexPath = tableView.indexPathForCell(sender as! PostingTableViewCell) {
                 println("transitioning to detail page")
+    
                 let posting = postings[indexPath.row] as! Posting
                 let DVC = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+                print("DVC is")
+                println(DVC)
                 DVC.detailItem = posting
                 DVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 DVC.navigationItem.leftItemsSupplementBackButton = true
@@ -195,7 +199,7 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
     // CUSTOM SEPARATOR
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (section > 0) { return UIScreen.mainScreen().bounds.width * 0.0625 } //0.0625
-        else { return 0 }
+        else { return 1 }
     }
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var headerView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 30))
