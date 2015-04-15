@@ -232,7 +232,7 @@ class CreateAnExperienceController: UITableViewController, UIImagePickerControll
                                 
                                 let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: profPicImage!)
                                 
-                                let posting = Posting(title: posting["title"] as! String, description: posting["description"] as! String, cost: posting["cost"] as! String, availableSpots: posting["availableSpots"] as! String, startTime: posting["startTime"] as! NSDate, endTime: posting["endTime"] as! NSDate, picture: image, profPic: profPicImage!, host: host)
+                                let posting = Posting(title: posting["title"] as! String, description: posting["description"] as! String, cost: posting["cost"] as! String, availableSpots: posting["availableSpots"] as! String, startTime: posting["startTime"] as! NSDate, endTime: posting["endTime"] as! NSDate, picture: image, profPic: profPicImage!, host: host, location: posting["location"] as! String)
                                 
                                 self.delegate!.didFinishCreatingPosting(posting)
                             }

@@ -24,7 +24,6 @@
 		50ECBBF71AAA3E03008952EA /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ECBBF61AAA3E03008952EA /* DatePickerCell.swift */; };
 		E183DE5F1A1FF2E400CB0455 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE5E1A1FF2E400CB0455 /* AppDelegate.swift */; };
 		E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE601A1FF2E400CB0455 /* MasterViewController.swift */; };
-		E183DE631A1FF2E400CB0455 /* DetailViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE621A1FF2E400CB0455 /* DetailViewController1.swift */; };
 		E183DE661A1FF2E400CB0455 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E183DE641A1FF2E400CB0455 /* Main.storyboard */; };
 		E183DE681A1FF2E400CB0455 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E183DE671A1FF2E400CB0455 /* Images.xcassets */; };
 		E183DE6B1A1FF2E400CB0455 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E183DE691A1FF2E400CB0455 /* LaunchScreen.xib */; };
@@ -78,7 +77,6 @@
 		E183DE5D1A1FF2E400CB0455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E183DE5E1A1FF2E400CB0455 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E183DE601A1FF2E400CB0455 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		E183DE621A1FF2E400CB0455 /* DetailViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController1.swift; sourceTree = "<group>"; };
 		E183DE651A1FF2E400CB0455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E183DE671A1FF2E400CB0455 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E183DE6A1A1FF2E400CB0455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 				E1A24C771A2375D400DDB426 /* ProfileViewController.swift */,
 				E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */,
 				E183DE601A1FF2E400CB0455 /* MasterViewController.swift */,
-				E183DE621A1FF2E400CB0455 /* DetailViewController1.swift */,
 				E183DEA01A20FD2500CB0455 /* SplitViewController.swift */,
 				5028EDAA1AAA5B2F001E7711 /* DateSelectorViewController.swift */,
 				5051B3F91ACC80C600DAB4AE /* CreateAnExperienceController.swift */,
@@ -376,7 +373,6 @@
 				E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */,
 				500E67331ABB717A005A8E6E /* ImageSelector.swift in Sources */,
 				E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */,
-				E183DE631A1FF2E400CB0455 /* DetailViewController1.swift in Sources */,
 				5051B3FA1ACC80C600DAB4AE /* CreateAnExperienceController.swift in Sources */,
 				50393F1E1AAE2867003B9DD4 /* TestTableViewCell.swift in Sources */,
 				E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */,

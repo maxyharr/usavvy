@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailViewController: UITableViewController {
-    
+    var detailItem: Posting?
     
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,44 +19,82 @@ class DetailViewController: UITableViewController {
     @IBOutlet weak var startFinishTimeLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
-
-    var detailItem: Posting? {
-        didSet {
-            // Update the view.
-        }
+    @IBOutlet weak var hostImageView: UIImageView!
+    @IBOutlet weak var hostNameLabel: UILabel!
+    @IBOutlet weak var hostEmail: UILabel!
+    @IBOutlet weak var hostDescription: UITextView!
+    
+    @IBAction func bookNow(sender: AnyObject) {
+        let alert = UIAlertView()
+        alert.title = "Booking Complete"
+        alert.message = "Congratulations! You booked an experience. You will receive an email explaining the details and notification before to remind you."
+        alert.addButtonWithTitle("Awesome!")
+        alert.show()
     }
     
+    let imageCropper = ImageCropper()
+    
     func configureView() {
-        // Update the user interface for the detail item.
-        //        if let detail: AnyObject = self.detailItem {
-        //            if let label = self.detailDescriptionLabel {
-        //                self.title = detail.description
-        //                label.text = detail.description
-        //            }
-        //        }
-        
-        // Set the appropriate labels
-        
-        self.titleLabel.text = detailItem?.title
-        // Still need to add location to posting model
-        //self.locationLabel.text = detailItem?.location
-        self.costLabel.text = detailItem?.cost
-        if detailItem?.startTime != nil {
-            self.dateLabel.text = MHTimeDisplay.dateSimple(detailItem!.startTime)
+        if let detail: Posting = self.detailItem {
+            // Image
+            let width = UIScreen.mainScreen().bounds.width
+            self.mainImageView.image = detail.picture
+            
+            // Title
+            self.titleLabel.text = detail.title
+            
+            // Location
+            self.locationLabel.text = detailItem?.location
+            
+            // Cost
+            if detail.cost.toInt() == 0 { detail.cost = "Free" }
+            if detail.cost != "Free" {
+                if detail.cost.rangeOfString("$") == nil { detail.cost = "$" + detail.cost }
+            }
+            self.costLabel.text = detail.cost
+            
+            // Date
+            self.dateLabel.text = MHTimeDisplay.dateSimple(detail.startTime)
+            
+            // Time
             self.startFinishTimeLabel.text = MHTimeDisplay.startToEnd(detailItem!.startTime, endTime: detailItem!.endTime)
+            
+            // Description
+            self.descriptionTextView.text = detailItem?.description
+            
+            
+            // Host Image
+            self.hostImageView.image = detailItem?.profPic
+            
+            // Host Name
+            self.hostNameLabel.text = detailItem?.host.name
+            
+            // Host Email
+            self.hostEmail.text = detailItem?.host.email
+            
+            // Host Description
+            self.hostDescription.text = detailItem?.host.description
+            
+            self.navigationController?.setToolbarHidden(false, animated: true)
         }
-        self.descriptionTextView.text = detailItem?.description
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.configureView()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setToolbarHidden(true, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +110,13 @@ class DetailViewController: UITableViewController {
         
         if indexPath.section == 0 {
             if indexPath.row == 0 { return width }
-            if indexPath.row == 1 { return width*0.25 }
+            else if indexPath.row == 1 { return width*0.25 }
+        }
+        
+        if indexPath.section == 3 {
+            if indexPath.row == 1 { return width }
+            if indexPath.row == 3 { return width*0.65 }
+            return 44
         }
         
         if indexPath.section == 2 { return width*0.65 }

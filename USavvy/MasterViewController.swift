@@ -15,6 +15,7 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         sender.selected = !sender.selected
     }
     var detailViewController: DetailViewController? = nil
+    let imageCropper = ImageCropper()
     
     // Holds array of IOS Posting Objects to show on the screen
     var postings = NSMutableArray()
@@ -76,6 +77,7 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                         let availableSpots = parsePosting["availableSpots"] as! String
                         let startTime = parsePosting["startTime"] as! NSDate
                         let endTime = parsePosting["endTime"] as! NSDate
+                        let location = parsePosting["location"] as! String
                         
                         var backgroundPhoto:UIImage? = nil
                         
@@ -85,7 +87,6 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                             if error == nil {
                                 let image = UIImage(data:imageData)
                                 backgroundPhoto = image
-                                println("loaded in background image in viewDidLoad")
                                 
                                 // get user from posting (so we can get the profpic)
                                 let parseUser = parsePosting["user"] as! PFUser
@@ -110,9 +111,9 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                                                 
                                                 let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: profPic!)
                                                 
-                                                
+                                                let width = UIScreen.mainScreen().bounds.width
                                                 // create a posting object
-                                                let posting = Posting(title: title,description: description, cost: cost, availableSpots: availableSpots, startTime: startTime, endTime: endTime, picture: backgroundPhoto!, profPic: profPic!, host: host)
+                                                let posting = Posting(title: title, description: description, cost: cost, availableSpots: availableSpots, startTime: startTime, endTime: endTime, picture: ImageCropper.squareImageWithImage(backgroundPhoto!, newSize: CGSizeMake(width, width)) , profPic: profPic!, host: host, location: location)
                                                 
                                                 //self.postings.insertObject(posting, atIndex: 0)
                                                 self.postings.addObject(posting)
@@ -167,18 +168,14 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         
         // User wants to show the posting details for a specific one
         if segue.identifier == "showDetail" {
+            var detailVC = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
             
-            // DVC - Destination View Controller
-            if let indexPath = tableView.indexPathForCell(sender as! PostingTableViewCell) {
-                println("transitioning to detail page")
-    
-                let posting = postings[indexPath.row] as! Posting
-                let DVC = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                print("DVC is")
-                println(DVC)
-                DVC.detailItem = posting
-                DVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                DVC.navigationItem.leftItemsSupplementBackButton = true
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let posting = postings[indexPath.section] as! Posting
+                detailVC.detailItem = posting
+                
+                detailVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                detailVC.navigationItem.leftItemsSupplementBackButton = true
             }
         }
         
@@ -219,9 +216,8 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         let posting = postings[indexPath.section] as! Posting
         
         let cell = tableView.dequeueReusableCellWithIdentifier("experienceCell", forIndexPath: indexPath) as! PostingTableViewCell
-        let imageCropper = ImageCropper()
         let cellWidth = UIScreen.mainScreen().bounds.width
-        cell.backgroundImageView.image  = imageCropper.squareImageWithImage(posting.picture, newSize: CGSizeMake(cellWidth, cellWidth))
+        cell.backgroundImageView.image  = posting.picture
         cell.titleLabel.text = posting.title
         cell.hostNameLabel.text = posting.host.name
         
@@ -237,7 +233,7 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         
         
         // setting profile image programmatically
-        cell.profileImageView.image = imageCropper.squareImageWithImage(posting.profPic, newSize: CGSizeMake(100, 100))
+        cell.profileImageView.image = posting.profPic
         cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.width/2 // to make it a circle
         cell.profileImageView.clipsToBounds = true
         cell.profileImageView.layer.borderWidth = 3
