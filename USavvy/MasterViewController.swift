@@ -24,6 +24,13 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
     // callback from HostFromViewControllerDelegate when user finishes creating a posting
     func didFinishCreatingPosting(posting: Posting) {
         postings.addObject(posting)
+        self.postings.sortUsingComparator (
+            {
+                (p1:AnyObject!, p2:AnyObject!)->NSComparisonResult in
+                let posting1 = p1 as! Posting
+                let posting2 = p2 as! Posting
+                return posting1.startTime.compare(posting2.startTime)
+        })
         //postings.insertObject(posting, atIndex: 0)
         self.tableView.reloadData()
     }

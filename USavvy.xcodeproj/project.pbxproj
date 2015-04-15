@@ -18,6 +18,7 @@
 		504E50BE1AACABBA00A80CF4 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E50BD1AACABBA00A80CF4 /* DescriptionCell.swift */; };
 		5051B3F81ACC62A100DAB4AE /* SimpleTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051B3F71ACC62A100DAB4AE /* SimpleTextCell.swift */; };
 		5051B3FA1ACC80C600DAB4AE /* CreateAnExperienceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051B3F91ACC80C600DAB4AE /* CreateAnExperienceController.swift */; };
+		5074FF021ADE35DE00ED7BE5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074FF011ADE35DE00ED7BE5 /* ProfileViewController.swift */; };
 		507B6FF31AAA68AB00104B17 /* MHTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507B6FF21AAA68AB00104B17 /* MHTimeDisplay.swift */; };
 		50D4F4321ADC9A0700D48C27 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F4311ADC9A0700D48C27 /* DetailViewController.swift */; };
 		50ECBBF31AAA3963008952EA /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ECBBF21AAA3963008952EA /* TitleCell.swift */; };
@@ -43,7 +44,6 @@
 		E183DE9F1A1FFE6900CB0455 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */; };
 		E183DEA11A20FD2500CB0455 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA01A20FD2500CB0455 /* SplitViewController.swift */; };
 		E183DEA31A225F5C00CB0455 /* PostingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */; };
-		E1A24C781A2375D400DDB426 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A24C771A2375D400DDB426 /* ProfileViewController.swift */; };
 		E1A24C7A1A238EC000DDB426 /* Posting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A24C791A238EC000DDB426 /* Posting.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +69,7 @@
 		504E50BD1AACABBA00A80CF4 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		5051B3F71ACC62A100DAB4AE /* SimpleTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextCell.swift; sourceTree = "<group>"; };
 		5051B3F91ACC80C600DAB4AE /* CreateAnExperienceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAnExperienceController.swift; sourceTree = "<group>"; };
+		5074FF011ADE35DE00ED7BE5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		507B6FF21AAA68AB00104B17 /* MHTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTimeDisplay.swift; sourceTree = "<group>"; };
 		50D4F4311ADC9A0700D48C27 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		50ECBBF21AAA3963008952EA /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		E183DEA01A20FD2500CB0455 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		E183DEA21A225F5B00CB0455 /* PostingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingTableViewCell.swift; sourceTree = "<group>"; };
-		E1A24C771A2375D400DDB426 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		E1A24C791A238EC000DDB426 /* Posting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,13 +171,13 @@
 			isa = PBXGroup;
 			children = (
 				50393F1D1AAE2867003B9DD4 /* TestTableViewCell.swift */,
-				E1A24C771A2375D400DDB426 /* ProfileViewController.swift */,
 				E183DE9E1A1FFE6900CB0455 /* LoginViewController.swift */,
 				E183DE601A1FF2E400CB0455 /* MasterViewController.swift */,
 				E183DEA01A20FD2500CB0455 /* SplitViewController.swift */,
 				5028EDAA1AAA5B2F001E7711 /* DateSelectorViewController.swift */,
 				5051B3F91ACC80C600DAB4AE /* CreateAnExperienceController.swift */,
 				50D4F4311ADC9A0700D48C27 /* DetailViewController.swift */,
+				5074FF011ADE35DE00ED7BE5 /* ProfileViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				E183DE611A1FF2E400CB0455 /* MasterViewController.swift in Sources */,
 				507B6FF31AAA68AB00104B17 /* MHTimeDisplay.swift in Sources */,
 				500E67311ABB6D17005A8E6E /* PictureCell.swift in Sources */,
-				E1A24C781A2375D400DDB426 /* ProfileViewController.swift in Sources */,
+				5074FF021ADE35DE00ED7BE5 /* ProfileViewController.swift in Sources */,
 				5028EDA91AAA4B13001E7711 /* BasicCell.swift in Sources */,
 				502D624B1AAA6E0100EC5DA6 /* simpleNumberInputCell.swift in Sources */,
 				E183DE5F1A1FF2E400CB0455 /* AppDelegate.swift in Sources */,
