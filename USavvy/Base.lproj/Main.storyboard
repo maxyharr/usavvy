@@ -238,13 +238,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w1s-33-xJN">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w1s-33-xJN" id="ET7-gd-mK3">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -642,12 +635,28 @@
             <objects>
                 <tableViewController id="deY-Ss-OVR" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ylC-Ny-5xi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="for-MK-AVU">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="153" id="7QL-yG-Rf8">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7QL-yG-Rf8" id="DQW-qc-Jy1">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tza-Lt-S1K">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="152"/>
+                                                    <state key="normal" title="Upload Profile Picture" backgroundImage="stock-prof">
+                                                        <color key="titleColor" red="0.89342645200000004" green="0.56868008000000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0VR-Ve-Zjc">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0VR-Ve-Zjc" id="fSR-qc-ZK6">
@@ -735,6 +744,14 @@
                             <outlet property="delegate" destination="deY-Ss-OVR" id="JG6-tA-SQd"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Logout" id="YlC-xL-W9T"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="iIR-81-7De"/>
+                        <barButtonItem title="Save Changes" id="bnz-e1-FPQ">
+                            <color key="tintColor" red="0.89342645200000004" green="0.56868008000000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50E-1G-oMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -951,6 +968,9 @@
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="P9f-Ui-JYs">
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshFromPull:" destination="7bK-jq-Zjz" eventType="valueChanged" id="OcC-bm-ccB"/>
+                        </connections>
                     </refreshControl>
                     <connections>
                         <outlet property="profileButton" destination="aUr-aH-ZLb" id="AAw-RQ-GHJ"/>

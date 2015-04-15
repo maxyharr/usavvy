@@ -47,11 +47,8 @@ class DetailViewController: UITableViewController {
             self.locationLabel.text = detailItem?.location
             
             // Cost
-            if detail.cost.toInt() == 0 { detail.cost = "Free" }
-            if detail.cost != "Free" {
-                if detail.cost.rangeOfString("$") == nil { detail.cost = "$" + detail.cost }
-            }
-            self.costLabel.text = detail.cost
+            if detail.cost.toInt() == 0 { self.costLabel.text = "Free" }
+            else { self.costLabel.text = "$" + detail.cost }
             
             // Date
             self.dateLabel.text = MHTimeDisplay.dateSimple(detail.startTime)

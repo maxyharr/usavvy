@@ -57,11 +57,18 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         nav?.tintColor = UIColor.orangeColor()
     }
     
+    @IBAction func refreshFromPull(sender: AnyObject) {
+        self.refreshPostings()
+        self.refreshControl?.endRefreshing()
+    }
     // Pull in new data about postings in the marketplace that are available
     // TODO: Explain how this is being performed - Right now it is working, but horribly ineficiently
     func refreshPostings() {
-        // this is a test comment
         var query = PFQuery(className:"Posting")
+        
+        // only get listings that are in the future
+        query.whereKey("startTime", greaterThan: NSDate())
+        
         query.findObjectsInBackgroundWithBlock {
                 (postingsTemp: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
@@ -117,6 +124,14 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
                                                 
                                                 //self.postings.insertObject(posting, atIndex: 0)
                                                 self.postings.addObject(posting)
+                                                self.postings.sortUsingComparator (
+                                                    {
+                                                        (p1:AnyObject!, p2:AnyObject!)->NSComparisonResult in
+                                                        let posting1 = p1 as! Posting
+                                                        let posting2 = p2 as! Posting
+                                                        return posting1.startTime.compare(posting2.startTime)
+                                                })
+                                                
                                                 self.tableView.reloadData()
                                             } else {
                                                 println("didn't find profPicImage")
