@@ -16,30 +16,29 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
     var delegate:ProfileViewControllerDelegate? = nil
     let imageWidth = UIScreen.mainScreen().bounds.width*0.25
     
+    var firstName:String = ""
+    var lastName:String = ""
+    var profileDescription:String = ""
+    var email:String = ""
+    var profilePicture:UIImage = UIImage()
+    
     var user = PFUser.currentUser()
     
     var picker:UIImagePickerController? = UIImagePickerController()
     var popover:UIPopoverController? = nil
     
-    
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var profilePictureButton: UIButton!
-    @IBOutlet weak var firstNameField: UITextField!
-    @IBOutlet weak var lastNameField: UITextField!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    // only used to show popover
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBAction func saveChanges(sender: AnyObject) {
-        println("trying to save changes")
         if delegate != nil {
-            println("delegate was indeed not nil")
-            user["firstName"] = self.firstNameField.text
-            user["lastName"] = self.lastNameField.text
-            user["personalDescription"] = self.descriptionTextView.text
-            user["email"] = self.emailField.text
+            user["firstName"] = self.firstName
+            user["lastName"] = self.lastName
+            user["personalDescription"] = self.profileDescription
+            user["email"] = self.email
             user.saveInBackgroundWithBlock(nil)
             
-            let imageData = UIImageJPEGRepresentation(self.profileImageView.image, 0.9)
+            let imageData = UIImageJPEGRepresentation(self.profilePicture, 1)
             let imageFile = PFFile(name:"image.png", data:imageData)
             
             var userPhoto = PFObject(className:"UserPhoto")
@@ -105,7 +104,8 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         else
         {
             popover=UIPopoverController(contentViewController: alert)
-            popover!.presentPopoverFromRect(profilePictureButton.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+//            popover!.presentPopoverFromRect(profilePictureButton.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+            popover!.presentPopoverFromBarButtonItem(self.saveButton, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
         }
         
     }
@@ -127,7 +127,8 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         else
         {
             popover=UIPopoverController(contentViewController: picker!)
-            popover!.presentPopoverFromRect(profilePictureButton.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+//            popover!.presentPopoverFromRect(profilePictureButton.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+            popover!.presentPopoverFromBarButtonItem(self.saveButton, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
         }
     }
     
@@ -137,7 +138,10 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         
         //sets the selected image to image view
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                self.profileImageView.image = ImageCropper.squareImageWithImage(image, newSize: CGSizeMake(imageWidth, imageWidth))
+            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! profilePictureCell
+            let squareImage = ImageCropper.squareImageWithImage(image, newSize: CGSizeMake(imageWidth, imageWidth))
+            cell.profilePictureView.image = squareImage
+            self.profilePicture = squareImage
         }
     }
     
@@ -160,29 +164,30 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
     }
 
     func refreshUserInfo() {
-        self.emailField.text = user.email
-        // making API calls each time I think. Could be stored in a user object to make better
-        
-        if let firstName = user["firstName"] as? String{
-            self.firstNameField.text = firstName
-        }
-        if let lastName = user["lastName"] as? String {
-            self.lastNameField.text = lastName
-        }
-        
-        if let personalDescription = user["personalDescription"] as? String {
-            self.descriptionTextView.text = personalDescription
-        }
-        
-        if let userImageFile = user["profilePicture"] as? PFFile {
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData!, error: NSError!) -> Void in
-                if error == nil {
-                    let image = UIImage(data:imageData)
-                    self.profileImageView.image = image
-                }
-            }
-        }
+        self.tableView.reloadData()
+//        self.emailField.text = user.email
+//        // making API calls each time I think. Could be stored in a user object to make better
+//        
+//        if let firstName = user["firstName"] as? String{
+//            self.firstNameField.text = firstName
+//        }
+//        if let lastName = user["lastName"] as? String {
+//            self.lastNameField.text = lastName
+//        }
+//        
+//        if let personalDescription = user["personalDescription"] as? String {
+//            self.descriptionTextView.text = personalDescription
+//        }
+//        
+//        if let userImageFile = user["profilePicture"] as? PFFile {
+//            userImageFile.getDataInBackgroundWithBlock {
+//                (imageData: NSData!, error: NSError!) -> Void in
+//                if error == nil {
+//                    let image = UIImage(data:imageData)
+//                    self.profileImageView.image = image
+//                }
+//            }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -192,19 +197,19 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
     
 
     
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        let width = imageWidth
-//        
-//        if indexPath.section == 0 {
-//            if indexPath.row == 0 { return width }
-//        }
-//        
-//        else if indexPath.section == 1 {
-//            if indexPath.row == 0 { return UIScreen.mainScreen().bounds.width * 0.5 }
-//        }
-//        
-//        return 44
-//    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let width = imageWidth
+        
+        if indexPath.section == 0 {
+            if indexPath.row == 0 { return width }
+        }
+        
+        else if indexPath.section == 1 {
+            if indexPath.row == 0 { return UIScreen.mainScreen().bounds.width * 0.5 }
+        }
+        
+        return 44
+    }
 
     // MARK: - Table view data source
 
@@ -215,37 +220,103 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 { return 4 }
         else if section == 1 { return 1 }
-//        else if section == 2 { return host.favoritedPostings.count }
-//        else if section == 3 { return host.postings.count }
+        else if section == 2 { return 1 }// { return host.favoritedPostings.count }
+        else if section == 3 { return 1 }// { return host.postings.count }
         else { return 1 }
     }
 
 
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-////        if indexPath.section == 0 {
-////            if indexPath.row == 0 {
-////                return tableView.dequeueReusableCellWithIdentifier("profilePictureIdentifier") as! UITableViewCell
-////            }
-////            
-////            else { return tableView.dequeueReusableCellWithIdentifier("commonIdentifier") as! UITableViewCell }
-////        }
-//        
-////        else if indexPath.section == 1 {
-////            return tableView.dequeueReusableCellWithIdentifier("descriptionIdentifier") as! UITableViewCell
-////        }
-//        
-//        if indexPath.section == 2 {
-//            let cell = tableView.dequeueReusableCellWithIdentifier("favoriteCell") as! UITableViewCell
-//            cell.textLabel?.text = ""
-//        }
-//        
-//        else if indexPath.section == 3 {
-//            return tableView.dequeueReusableCellWithIdentifier("myPostingCell") as! UITableViewCell
-//        }
-//        
-//        return tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-//        
-//    }
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        
+        // STATIC SECTOIN 1
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("profilePictureCell") as! profilePictureCell
+                if let userImageFile = user["profilePicture"] as? PFFile {
+                    userImageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData!, error: NSError!) -> Void in
+                        if error == nil {
+                            let image = UIImage(data:imageData)
+                            cell.profilePictureView.image = image
+                            self.profilePicture = image!
+                        }
+                    }
+                }
+                return cell
+            }
+                
+            else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("leftRightSimpleCell") as! LeftRightSimpleCell
+                if let firstName = user["firstName"] as? String{
+                    cell.rightField.text = firstName
+                    self.firstName = firstName
+                }
+                return cell
+            }
+                
+            else if indexPath.row == 2 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("leftRightSimpleCell") as! LeftRightSimpleCell
+                cell.leftLabel.text = "Last Name"
+                if let lastName = user["lastName"] as? String{
+                    cell.rightField.text = lastName
+                    self.lastName = lastName
+                }
+                return cell
+            }
+                
+            else if indexPath.row == 3 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("leftRightSimpleCell") as! LeftRightSimpleCell
+                cell.leftLabel.text = "Email"
+                if let email = user["email"] as? String {
+                    cell.rightField.text = email
+                    self.email = email
+                }
+                return cell
+            }
+            
+        }
+        
+            
+            
+        
+        // STATIC SECTION 2
+        else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("profileDescriptionCell") as! ProfileDescriptionCell
+            if let description = user["personalDescription"] as? String {
+                cell.descriptionView.text = description
+                self.profileDescription = description
+            }
+            return cell
+        }
+            
+            
+            
+            
+        
+        
+        // FAVORITE POSTINGS SECTION 3
+        if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("smallPostingCell") as! SmallPostingCell
+            // set up rest of cells based off of array
+            return cell
+        }
+        
+        else if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("smallPostingCell") as! SmallPostingCell
+            // set up rest of cells based off of array
+            return cell
+        }
+        
+        return tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        
+    }
+    
+    
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -291,5 +362,50 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
+
+
+
+
+
+
+
+
+
+
+// Custom Cell Classes
+
+class profilePictureCell: UITableViewCell {
+    @IBOutlet weak var profilePictureButton: UIButton!
+    @IBOutlet weak var profilePictureView: UIImageView!
+    @IBAction func uploadProfilePicture(sender: AnyObject) {
+    }
+}
+
+
+
+class LeftRightSimpleCell: UITableViewCell {
+    @IBOutlet weak var rightField: UITextField!
+    
+    @IBOutlet weak var leftLabel: UILabel!
+}
+
+class ProfileDescriptionCell: UITableViewCell {
+    @IBOutlet weak var descriptionView: UITextView!
+    
+}
+
+
+
+
+class SmallPostingCell: UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    
+    @IBOutlet weak var subtitle: UILabel!
+}
+
+
+
+
+
