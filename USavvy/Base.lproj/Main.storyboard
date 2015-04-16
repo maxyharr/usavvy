@@ -567,6 +567,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="detailImageView" destination="eWM-zI-f66" id="maO-XH-w8Z"/>
                                     <outlet property="subtitle" destination="r5f-Cp-Qgp" id="3zX-ms-NXW"/>
                                     <outlet property="title" destination="1Ht-cP-USM" id="bZd-Gz-sew"/>
                                 </connections>
@@ -747,7 +748,7 @@
                                             <state key="selected" image="heart_icon_selected"/>
                                             <state key="highlighted" image="heart_icon_unselected"/>
                                             <connections>
-                                                <action selector="favoritedPressed:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="Y7E-5e-fYe"/>
+                                                <action selector="favoritedPressed:" destination="WCw-Qf-5nD" eventType="touchUpInside" id="QYo-Wa-hae"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jony-profile" translatesAutoresizingMaskIntoConstraints="NO" id="6Lk-vu-TqQ">
@@ -782,6 +783,7 @@
                                     <outlet property="backgroundImageView" destination="fq8-bW-Hxd" id="wKo-4R-FqT"/>
                                     <outlet property="costLabel" destination="i1g-nF-IjV" id="I3b-0F-BFh"/>
                                     <outlet property="dateLabel" destination="bkw-Fw-1ZK" id="Dy4-hi-Lxx"/>
+                                    <outlet property="favoriteButton" destination="ath-dg-QP4" id="D1T-tE-EWZ"/>
                                     <outlet property="hostNameLabel" destination="AlB-H5-ZJF" id="Qjm-TJ-u91"/>
                                     <outlet property="profileImageView" destination="6Lk-vu-TqQ" id="fgu-e5-gH0"/>
                                     <outlet property="spotsLabel" destination="Mh2-dd-aJ8" id="76A-BX-TIk"/>

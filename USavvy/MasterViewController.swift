@@ -11,9 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController, CreateAnExperienceDelegate, ProfileViewControllerDelegate {
 
     @IBOutlet weak var profileButton: UIBarButtonItem!
-    @IBAction func favoritedPressed(sender: UIButton) {
-        sender.selected = !sender.selected
-    }
+   
     var detailViewController: DetailViewController? = nil
     let imageCropper = ImageCropper()
     
@@ -242,6 +240,9 @@ class MasterViewController: UITableViewController, CreateAnExperienceDelegate, P
         cell.backgroundImageView.image  = posting.picture
         cell.titleLabel.text = posting.title
         cell.hostNameLabel.text = posting.host.name
+        
+        var pfUser = PFUser.currentUser()
+        //########## COMPUTE IF RELATIONSHIP WORTHY HERE ######### - will also need to pull in list of "favoritedPostings" when pulling in list of all postings
         
         // Display cost as "Free" if 0
         if (posting.cost.toInt() == 0) { cell.costLabel.text = "Free" }

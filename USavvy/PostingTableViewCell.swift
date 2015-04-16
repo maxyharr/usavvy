@@ -10,6 +10,8 @@ import UIKit
 
 class PostingTableViewCell: UITableViewCell {
 
+    var user = PFUser.currentUser()
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,6 +21,14 @@ class PostingTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var startEndTimeLabel: UILabel!
    
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBAction func favoritedPressed(sender: UIButton) {
+        // Highlight the UI
+        sender.selected = !sender.selected
+        
+        // Save change in background
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImageView.layer.cornerRadius = 38

@@ -13,6 +13,9 @@ protocol ProfileViewControllerDelegate {
 }
 
 class ProfileViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+    
+    var myPostings = NSArray()
+    
     var delegate:ProfileViewControllerDelegate? = nil
     let imageWidth = UIScreen.mainScreen().bounds.width*0.25
     
@@ -146,7 +149,37 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.title = "Your Profile"
+        
         self.navigationController?.setToolbarHidden(false, animated: true)
+        
+        
+        // get new postings
+        var myNewPostingsQuery = PFQuery(className: "Posting")
+        myNewPostingsQuery.whereKey("startTime", greaterThan: NSDate())
+        myNewPostingsQuery.whereKey("user", equalTo: PFUser.currentUser())
+        
+
+        myNewPostingsQuery.findObjectsInBackgroundWithBlock {
+            (myParsePostings: [AnyObject]!, error: NSError!) -> Void in
+            if error == nil {
+                self.myPostings = myParsePostings
+                
+                // sort the results from soonest to latest
+                self.myPostings = self.myPostings.sortedArrayUsingComparator (
+                    {
+                        (p1:AnyObject!, p2:AnyObject!)->NSComparisonResult in
+                        let posting1 = p1 as! PFObject
+                        let posting2 = p2 as! PFObject
+                        return (posting1["startTime"] as! NSDate).compare(posting2["startTime"] as! NSDate)
+                })
+                
+                self.tableView.reloadData()
+            }
+        }
+        
+        
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -221,7 +254,7 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         if section == 0 { return 4 }
         else if section == 1 { return 1 }
         else if section == 2 { return 1 }// { return host.favoritedPostings.count }
-        else if section == 3 { return 1 }// { return host.postings.count }
+        else if section == 3 { return self.myPostings.count }// { return host.postings.count }
         else { return 1 }
     }
 
@@ -307,15 +340,45 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         
         else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCellWithIdentifier("smallPostingCell") as! SmallPostingCell
+            
+            
             // set up rest of cells based off of array
+            
+            // TITLE
+            cell.title.text = self.myPostings[indexPath.row]["title"] as? String
+            
+            
+            // SUBTITLE
+            cell.subtitle.text = MHTimeDisplay.startToEndWithDate((self.myPostings[indexPath.row]["startTime"] as! NSDate), endTime: (self.myPostings[indexPath.row]["endTime"] as! NSDate))
+            
+            
+            // IMAGE
+            let imageFile = self.myPostings[indexPath.row]["experiencePhoto"]! as! PFFile
+            imageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    let image = UIImage(data:imageData)
+                    cell.detailImageView.image = image
+                }
+            }
             return cell
         }
         
         return tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-        
     }
     
-    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Description"
+        }
+        else if section == 2 {
+            return "Favorited Postings"
+        }
+        else if section == 3 {
+            return "My New Postings"
+        }
+        else { return "" }
+    }
 
 
     /*
@@ -402,6 +465,7 @@ class ProfileDescriptionCell: UITableViewCell {
 class SmallPostingCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     
+    @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var subtitle: UILabel!
 }
 
