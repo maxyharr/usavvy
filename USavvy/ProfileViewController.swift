@@ -380,7 +380,8 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
         else { return "" }
     }
 
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -416,15 +417,25 @@ class ProfileViewController: UITableViewController, UINavigationControllerDelega
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetail" {
+            var detailVC = (segue.destinationViewController as! DetailViewController)
+            
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let parsePosting = self.myPostings[indexPath.row] as! PFObject
+                let posting = Posting(parsePosting: parsePosting)
+                detailVC.detailItem = posting
+                
+                detailVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                detailVC.navigationItem.leftItemsSupplementBackButton = true
+            }
+        }
     }
-    */
+    
 }
 
 

@@ -115,10 +115,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Experience Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="MQk-Zp-y4t">
-                                                    <rect key="frame" x="16" y="9" width="153" height="21"/>
+                                                    <rect key="frame" x="16" y="9" width="568" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="3EG-A2-g4J"/>
-                                                        <constraint firstAttribute="height" constant="21" id="B4T-Wh-3hm"/>
+                                                        <constraint firstAttribute="height" constant="21" id="Far-YI-0EH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -134,13 +133,15 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="leading" secondItem="b3X-rj-zhw" secondAttribute="leadingMargin" constant="8" id="9Py-nW-UbZ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="MQk-Zp-y4t" secondAttribute="trailing" constant="476" id="AFk-m2-Nap"/>
+                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="trailing" secondItem="Xc9-Yy-ScM" secondAttribute="trailing" id="Kgd-dR-9dE"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Xc9-Yy-ScM" secondAttribute="bottom" constant="94" id="LCn-Ef-Fry"/>
-                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="top" secondItem="b3X-rj-zhw" secondAttribute="topMargin" constant="1" id="OQV-uj-VKM"/>
-                                                <constraint firstItem="Xc9-Yy-ScM" firstAttribute="top" secondItem="MQk-Zp-y4t" secondAttribute="bottom" constant="8" id="YxV-2t-B3n"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Xc9-Yy-ScM" secondAttribute="trailing" constant="8" id="e4f-OI-koR"/>
+                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="leading" secondItem="Xc9-Yy-ScM" secondAttribute="leading" id="gDK-Bt-cRc"/>
+                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="top" secondItem="b3X-rj-zhw" secondAttribute="topMargin" constant="1" id="gvh-ev-Ous"/>
+                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="leading" secondItem="b3X-rj-zhw" secondAttribute="leadingMargin" constant="1" id="hX7-by-yqJ"/>
+                                                <constraint firstItem="Xc9-Yy-ScM" firstAttribute="top" secondItem="MQk-Zp-y4t" secondAttribute="bottom" constant="8" symbolic="YES" id="or8-yn-kYA"/>
                                                 <constraint firstItem="Xc9-Yy-ScM" firstAttribute="leading" secondItem="b3X-rj-zhw" secondAttribute="leadingMargin" constant="8" id="rc0-Ij-o2y"/>
+                                                <constraint firstItem="MQk-Zp-y4t" firstAttribute="centerX" secondItem="b3X-rj-zhw" secondAttribute="centerX" id="z9j-DE-MfF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -570,6 +571,7 @@
                                     <outlet property="detailImageView" destination="eWM-zI-f66" id="maO-XH-w8Z"/>
                                     <outlet property="subtitle" destination="r5f-Cp-Qgp" id="3zX-ms-NXW"/>
                                     <outlet property="title" destination="1Ht-cP-USM" id="bZd-Gz-sew"/>
+                                    <segue destination="848-9u-Tog" kind="show" identifier="showDetail" id="qZy-Ad-FVi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1175,5 +1177,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="9aE-ND-dki"/>
         <segue reference="eV0-tS-HIM"/>
+        <segue reference="qZy-Ad-FVi"/>
     </inferredMetricsTieBreakers>
 </document>

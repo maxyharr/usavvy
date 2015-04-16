@@ -32,7 +32,61 @@ class Posting {
         self.profPic = profPic
         self.host = host
         self.location = location
+    }
+    
+    init(parsePosting: PFObject) {
+        self.picture = UIImage()
+        self.profPic = UIImage()
+        self.host = User(firstName: "", lastName: "", email: "", description: "", profilePicture: UIImage())
+        
+        self.title = parsePosting["title"] as! String
+        self.description = parsePosting["description"] as! String
+        self.cost = parsePosting["cost"] as! String
+        self.availableSpots = parsePosting["availableSpots"] as! String
+        self.startTime = parsePosting["startTime"] as! NSDate
+        self.endTime = parsePosting["endTime"] as! NSDate
+        self.location = parsePosting["location"] as! String
+        
+        // Fish out experience photo
+        let imageFile = parsePosting["experiencePhoto"]! as! PFFile
+        imageFile.getDataInBackgroundWithBlock {
+            (imageData: NSData!, error: NSError!) -> Void in
+            if error == nil {
+                let image = UIImage(data:imageData)
+                self.picture = image!
+            }
+        }
+        
+        
+        // Fish out host
+        let parseUser = parsePosting["user"] as! PFUser
+        let userid = parseUser.objectId as String!
+        let query = PFUser.query()
+        query.getObjectInBackgroundWithId(userid){
+            (retrievedUser: PFObject!, error: NSError!) -> Void in
+            if error == nil {
+                // get user's profpic to store in iOS object
+                var profPic:UIImage? = nil
+                let profileImageFile = retrievedUser["profilePicture"]! as! PFFile
+                profileImageFile.getDataInBackgroundWithBlock {
+                    (imageData: NSData!, error: NSError!) -> Void in
+                    if error == nil {
+                        let hostFirstName = retrievedUser["firstName"] as! String
+                        let hostLastName = retrievedUser["lastName"] as! String
+                        let hostEmail = retrievedUser["email"] as! String
+                        let hostDescription = retrievedUser["personalDescription"] as! String
+                        
+                        let image = UIImage(data:imageData)
+                        self.profPic = image!
+                        
+                        let host = User(firstName: hostFirstName, lastName: hostLastName, email: hostEmail, description: hostDescription, profilePicture: UIImage())
+                        self.host = host
+                    }
+                }
+            }
+        }
 
-
+        
+        
     }
 }
